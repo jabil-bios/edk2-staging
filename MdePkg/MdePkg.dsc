@@ -138,6 +138,7 @@
 
   MdePkg/Library/JedecJep106Lib/JedecJep106Lib.inf
   MdePkg/Library/BaseFdtLib/BaseFdtLib.inf
+  MdePkg/Library/PeiRngLibBz4814/PeiRngLibBz4814.inf
 
 [Components.IA32, Components.X64, Components.ARM, Components.AARCH64]
   #
