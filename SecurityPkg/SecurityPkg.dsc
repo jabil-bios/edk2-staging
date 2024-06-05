@@ -298,6 +298,7 @@
   #
   # Random Number Generator
   #
+  SecurityPkg/RandomNumberGenerator/RngPeiBz4814/RngPeiBz4814.inf
   SecurityPkg/RandomNumberGenerator/RngDxe/RngDxe.inf
 
   #
