@@ -215,42 +215,11 @@ random bytes across calls to this function. It is the caller’s responsibility 
 
 **Summary**
 
-This sub-section provides *EFI_GUID* values for a selection of *RNG_PPI* algorithms. The algorithms listed are
-optional, not meant to be exhaustive and may be augmented by vendors or other industry standards.
-
-The "raw" algorithm, when supported, is intended to provide entropy directly from the source, without it going through
-some deterministic random bit generator. These algorithms are defined in the *UEFI Specification* and shown in
-"Related Definitions" below.
-
-**Related Definitions - Prototype**
-
-```c
-#define EFI_RNG_ALGORITHM_SP800_90_HASH_256_GUID \
-  {0xa7af67cb, 0x603b, 0x4d42,\
-  {0xba, 0x21, 0x70, 0xbf, 0xb6, 0x29, 0x3f, 0x96}}
-
-#define EFI_RNG_ALGORITHM_SP800_90_HMAC_256_GUID \
-  {0xc5149b43, 0xae85, 0x4f53,\
-  {0x99, 0x82, 0xb9, 0x43, 0x35, 0xd3, 0xa9, 0xe7}}
-
-#define EFI_RNG_ALGORITHM_SP800_90_CTR_256_GUID \
-  {0x44f0de6e, 0x4d8c, 0x4045, \
-  {0xa8, 0xc7, 0x4d, 0xd1, 0x68, 0x85, 0x6b, 0x9e}}
-
-#define EFI_RNG_ALGORITHM_X9_31_3DES_GUID \
-  {0x63c4785a, 0xca34, 0x4012,\
-  {0xa3, 0xc8, 0x0b, 0x6a, 0x32, 0x4f, 0x55, 0x46}}
-
-#define EFI_RNG_ALGORITHM_X9_31_AES_GUID \
-  {0xacd03321, 0x777e, 0x4d3d,\
-  {0xb1, 0xc8, 0x20, 0xcf, 0xd8, 0x88, 0x20, 0xc9}}
-
-#define EFI_RNG_ALGORITHM_RAW \
-  {0xe43176d7, 0xb6e8, 0x4827,\
-    {0xb7, 0x84, 0x7f, 0xfd, 0xc4, 0xb6, 0x85, 0x61}}
-```
+The *RNG PPI* identifies algorithms by an *EFI_GUID* value as defined in the *UEFI Specification*.
 
 ##### RNG References
+
+"EFI RNG Algorithm Definitions," UEFI Specification (<https://uefi.org/specifications>), Version 2.10, Section 37.5.4.
 
 NIST SP 800-90, "Recommendation for Random Number Generation Using Deterministic Random Bit Generators," March 2007.
 See "Links to UEFI-Related Documents" (<http://uefi.org/uefi>) under the heading "Recommendation for Random Number
