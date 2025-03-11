@@ -24,6 +24,7 @@
 #include "DynamicTableManagerDxe.h"
 
 STATIC VOID  *mAcpiTableProtocolRegistration;
+STATIC VOID  *mSmbiosProtocolRegistration;
 
 /** Entrypoint of Dynamic Table Manager Dxe.
 
@@ -54,6 +55,7 @@ DynamicTableManagerDxeInitialize (
   )
 {
   EFI_EVENT  AcpiEvent;
+  EFI_EVENT  SmbiosEvent;
 
   AcpiEvent = EfiCreateProtocolNotifyEvent (
                 &gEfiAcpiTableProtocolGuid,
@@ -67,6 +69,22 @@ DynamicTableManagerDxeInitialize (
       DEBUG_ERROR,
       "Failed to register ACPI protocol notification event.\n"
       ));
+    return EFI_OUT_OF_RESOURCES;
+  }
+
+  SmbiosEvent = EfiCreateProtocolNotifyEvent (
+                  &gEfiSmbiosProtocolGuid,
+                  TPL_CALLBACK,
+                  SmbiosProtocolReady,
+                  NULL,
+                  &mSmbiosProtocolRegistration
+                  );
+  if (SmbiosEvent == NULL) {
+    DEBUG ((
+      DEBUG_ERROR,
+      "Failed to register SMBIOS protocol notification event.\n"
+      ));
+    gBS->CloseEvent (AcpiEvent);
     return EFI_OUT_OF_RESOURCES;
   }
 
