@@ -26,6 +26,7 @@
   DynamicTableManagerDxe.h
   SmbiosTableDispatcher.c
   SmbiosTableDispatcher.h
+  AcpiTableBuilder.c
 
 [Sources.ARM, Sources.AARCH64]
   Arm/ArmDynamicTableManager.c
@@ -43,6 +44,7 @@
   TableHelperLib
   UefiBootServicesTableLib
   UefiDriverEntryPoint
+  UefiLib
 
 [FeaturePcd]
   gEfiMdeModulePkgTokenSpaceGuid.PcdInstallAcpiSdtProtocol  ## CONSUMES
@@ -55,7 +57,6 @@
   gEdkiiDynamicTableFactoryProtocolGuid         # PROTOCOL ALWAYS_CONSUMED
 
 [Depex]
-  gEfiAcpiTableProtocolGuid AND
   gEdkiiConfigurationManagerProtocolGuid AND
   gEdkiiDynamicTableFactoryProtocolGuid
 
