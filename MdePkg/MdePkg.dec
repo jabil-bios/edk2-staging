@@ -2525,6 +2525,10 @@
   # @Prompt IPMI Serial responder LUN
   gEfiMdePkgTokenSpaceGuid.PcdIpmiSerialResponderLun|0x0|UINT8|0x00000053
 
+  ## This option chooses between pass through and MM mode of communication.
+  # @Prompt Mode of transport for management service requests
+  gEfiMdePkgTokenSpaceGuid.PcdMMPassThroughEnable|FALSE|BOOLEAN|0x10000037
+
   ## This is the maximum number of IPMI Serial request retries.
   #  The IPMB specification specified min value is 5 (section 4).
   # @Prompt Number of IPMI Serial request retries.
