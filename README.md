@@ -165,13 +165,13 @@ The Boot flow sequence consists of:
 5. DXE CdeServices (to provide the space optimized worker functions)
 6. DXE custom drivers (CdeServicesDxe-based)
 7. BDS custom drivers
-8. UEFI Shell drivers (CdeServicesDxe-based, yet still Torito-C-Library-based)
+8. UEFI Shell drivers (CdeServicesDxe-based, yet still Toro-C-Library-based)
 
 ![bootflow view](CdePkgBootFlow.png)
 
 ## Status
 The **CdeLib** and **CdeServices** are derived from their companion project 
-[Torito C Library](https://github.com/KilianKegel/torito-C-Library) but
+[Toro C Library](https://github.com/KilianKegel/torito-C-Library) but
 split into *wrapper*/*worker* architecture. (Internally [Torito C Library](https://github.com/KilianKegel/torito-C-Library)
 was designed from the very beginning for that split architecture, but  library and driver were merged into one executable, to
 run on platforms without **CdeServices** protocol.)
@@ -181,7 +181,7 @@ The functions below are already implemented and tested, every single one of them
 [List of available functions](implemented.md)
 
 
-[Torito C Library](https://github.com/KilianKegel/torito-C-Library#torito-c-library) has passed extensive
+[Torito C Library](https://github.com/KilianKegel/Toro-C-Library#torito-c-library) has passed extensive
 tests to verify Microsoft's C Library compatibility and is also approved in various real world applications.
 Therefore the **CdePkg**'s C library will be validated by simple tests only, in the [CdeValidationPkg](CdeValidationPkg/README.md#cdevalidationpkg), for DXE, SMM and PEI respectively.
 
