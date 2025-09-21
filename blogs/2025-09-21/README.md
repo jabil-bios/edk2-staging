@@ -21,7 +21,7 @@ We did not do as well as he wanted, but we did better than he expected."***<br>
 * [Preface](README.md#Preface)
 * [Abstract](README.md#Abstract)
 * [Introduction](README.md#Introduction)
-    * [introductory email](https://edk2.groups.io/g/devel/message/85720?p=%2C%2C%2C20%2C0%2C0%2C0%3A%3ACreated%2C%2CCdePkgBlog%2C20%2C2%2C0%2C88470049)
+    * [introductory email](https://edk2.groups.io/g/devel/message/121611)
     * [Retrospective](README.md#Retrospective)
 * [Library requirements](README.md#Library-requirements)
 * [Prerequisite Hardware/Software](README.md#Prerequisite-HardwareSoftware)
