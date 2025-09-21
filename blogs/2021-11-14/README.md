@@ -308,15 +308,3 @@ listed below
 [rtcdmp.c  ](rtcdmp.c), <br>
 [rtcwr.c   ](rtcwr.c),<br>
 [siodmp.c  ](siodmp.c)<br>
-
-	
-## Coming up soon...
-1. 2021-11-28:<br>
-    * Using UEFI- and Standard-C-API in shell applications<br>
-    * Creating MSDOS tools.<br>
-2. 2021-12-12:<br>
-    * Adopting open source Visual-Studio projects to UEFI<br>
-    * Introduction of the ACPCIA port to UEFI<br>
-3. 2022-09-01:<br>
-    * Introduction of how to calibrate a TSC-based software timer - on IBM-AT compatible UEFI platforms
-

@@ -194,23 +194,3 @@ Just press 'F7' to build the entire solution including the **toro-C-Library** an
 projects.
 
 The .EFI files appear in the ```x64\UEFIShell``` folder.
-
-
-## Coming up soon...
-<del>2021-11-28:<br>                                                </del>      
-<del>* Using UEFI- and Standard-C-API in shell applications<br>     </del>
-<del>* Creating MSDOS tools.<br>                                    </del>
-<del>2021-12-12:<br>                                                </del>
-<del>* Adopting open source Visual-Studio projects to UEFI<br>      </del>
-<del>* Introduction of the ACPCIA port to UEFI<br>                  </del>
-
-<ins>**2021-12-19:**</ins>
-* Redfish on CdePkg<br>
-
-<ins>**2022-01-16:**</ins>
-* Adopting open source Visual-Studio projects to UEFI<br>
-* Introduction of the ACPICA port to UEFI<br>
-
-<ins>**2022-01-30:**</ins>
-* Introduction of how to calibrate a TSC-based software timer - on IBM-AT compatible UEFI platforms
-

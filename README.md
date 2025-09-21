@@ -1,4 +1,4 @@
-# CdePkg - C Development Environment Package for EDK2
+# CdePkg - ***C-Development-Environment-Package*** for EDK2
 * <img src="https://github.com/KilianKegel/pictures/blob/master/refresh-icon.png"  width="18" height="18">[CdePkgBlog](README.md#cdepkg-blog-at--uefi--tianocore)
 * [Preface](README.md#preface)
 * [Introduction](README.md#introduction)
@@ -13,9 +13,8 @@
 * [Related Projects](README.md#related-projects)
 * [Revision history](README.md#revision-history)
 
-<!-- ![C](https://github.com/JoaquinConoBolillo/CdePkg/blob/master/C.png)  -->
-
-## CdePkg blog at <img src="https://github.com/KilianKegel/pictures/blob/master/uefi-logo.png"  width="68" height="68"> UEFI <img src="https://pbs.twimg.com/profile_images/759064723392311297/Yst2htM7_400x400.jpg"  width="68" height="68"> **tianocore**
+## CdePkg Blog
+<img src="https://github.com/KilianKegel/pictures/blob/master/New-icon.png"  width="150" height="150"> [![Repo name](https://github-readme-stats.vercel.app/api/pin/?username=KilianKegel&repo=Engineering-the-UEFI-C-Library)](https://github.com/KilianKegel/edk2-stagingCDEPKG/tree/CdePkg/blogs/2025-09-21#engineering-the-uefi-c-library)<br>
 [![Repo name](https://github-readme-stats.vercel.app/api/pin/?username=KilianKegel&repo=Introduction-of-the-ACPICA-port-to-UEFI)](https://github.com/tianocore/edk2-staging/tree/CdePkg/blogs/2022-01-16#introduction-of-the-acpica-port-to-uefi)
 [![Repo name](https://github-readme-stats.vercel.app/api/pin/?username=KilianKegel&repo=RedFish-on-CdePkg)](https://github.com/tianocore/edk2-staging/tree/CdePkg/blogs/2021-12-19#redfish-on-cdepkg)
 [![Repo name](https://github-readme-stats.vercel.app/api/pin/?username=KilianKegel&repo=Using-UEFI--and-Standard-C-API-in-shell-applications-creating-MSDOS-Tools-for-UEFI)](https://github.com/tianocore/edk2-staging/tree/CdePkg/blogs/2021-11-28#using-uefi--and-standard-c-api-in-shell-applications-creating-msdos-tools-for-uefi)
@@ -25,8 +24,7 @@
 The programming language C is standardized by the American National Standards Institute (ANSI) and the
 International Organization for Standardization (ISO) first in 1989 and 1990.
 The latest publicly available version of the standard from 1999 is to be found here: [C99](http://www.open-std.org/JTC1/SC22/WG14/www/docs/n1256.pdf).
-The original [ANSI C](https://1drv.ms/b/s!AmMwYrfjYfPyhmLlWx7oT5rO6UDg?e=ijKu1J), also known as C89 or
-C90 is not officially available anymore for free.
+The original **ANSI X3.159-1989**, also known as C89 is not available anymore, but is leaked [here](https://nvlpubs.nist.gov/nistpubs/Legacy/FIPS/fipspub160.pdf).
 
 Both, the *language* (operators, expressions, declarations, specifiers, e.g. `if`, `while`,
 `+`, `&&`, `unsigned`, `char`, `struct` ...) and the *library* (functions, parameters, structures, macros, 
@@ -117,6 +115,7 @@ defect system for repair/debug mode, enabling trace messages, excluding special
 (non-compliant) devices from beeing enumerated. 
 
 ## Implementation
+#### NOTE: LoadOptions/CommandLine implementation is just a proof of concept. It is currently N/A
 **CdePkg**'s functionality is composed of three components:
   1. the C Library **CdeLib**
   2. the service driver **CdeServices**
@@ -171,8 +170,8 @@ The Boot flow sequence consists of:
 
 ## Status
 The **CdeLib** and **CdeServices** are derived from their companion project 
-[Toro C Library](https://github.com/KilianKegel/torito-C-Library) but
-split into *wrapper*/*worker* architecture. (Internally [Torito C Library](https://github.com/KilianKegel/torito-C-Library)
+[**toro C Library**](https://github.com/KilianKegel/toro-C-Library) but
+split into *wrapper*/*worker* architecture. (Internally [**toro C Library**](https://github.com/KilianKegel/toro-C-Library)
 was designed from the very beginning for that split architecture, but  library and driver were merged into one executable, to
 run on platforms without **CdeServices** protocol.)
 
@@ -181,7 +180,7 @@ The functions below are already implemented and tested, every single one of them
 [List of available functions](implemented.md)
 
 
-[Torito C Library](https://github.com/KilianKegel/Toro-C-Library#torito-c-library) has passed extensive
+[**toro C Library**](https://github.com/KilianKegel/Toro-C-Library#toro-c-library) has passed extensive
 tests to verify Microsoft's C Library compatibility and is also approved in various real world applications.
 Therefore the **CdePkg**'s C library will be validated by simple tests only, in the [CdeValidationPkg](CdeValidationPkg/README.md#cdevalidationpkg), for DXE, SMM and PEI respectively.
 
@@ -198,54 +197,57 @@ Therefore the **CdePkg**'s C library will be validated by simple tests only, in 
 [todo reminder](todoreminder.md)
 
 ## Howto
-1. install a build machine: https://github.com/KilianKegel/HowTo-setup-an-UEFI-Development-PC#howto-setup-an-uefi-development-pc
-    * VS2015x86 tool chain is used. Make sure, that **MSVC v140 VS2015 build tools** are installed
-2. `git clone -b CdePkg --recursive https://github.com/tianocore/edk2-staging.git`
-3. run **LAUNCH.BAT**, that will
-    1. check build tools installed
-    2. download NASM and OPENSSL tools
-    3. download EDK2 and EDK2-NON-OSI from tianocore and CdeBinPkg
-    4. setup the build environment variables
-4. build the source tree:
-    * For MINNOWBOARD BUILD type:<br>`BLD.bat REL` or `BLD.bat DEB`
-    * For  EMULATION  BUILD type:<br>`BLD.bat EMU`
-
-<del>5. build the CdeBinPkg source tree:</del><br>
-<del>* NOTE: CdeBinPkg CdeServices driver and CdeLib library are provided in binary format per default</del><br>
-<del>but can be recreated within a VS2019 session</del><br>
-<del>To do so, start CdeBinPkgSrc.sln with VS2019</del><br>
-
-6. Emulation Build run/debug
-    * run: `runemu.bat`
-    * debug: `dbgemu.bat`<br>
-      NOTE: To use `__debugbreak()` the debug engine (VS2019) must be connected to the process *before*
-            the breakpoint is reached.
-
-7. Create and debug a new **CdePkg** driver<br>
-   The [CdeValidationPkg](CdeValidationPkg/README.md#cdevalidationpkg) can be used
-   to create and debug **CdePkg**-based drivers<br>
-   ATTENTION: Only a small number of ANSI C library [functions are yet validated](implemented.md)
+### NOTE: EDK2, Minnowboard and CdePkg related source code is currently N/A
+<del>1. install a build machine: https://github.com/KilianKegel/HowTo-setup-an-UEFI-Development-PC#howto-setup-an-uefi-development-pc<br></del>
+<del>    * VS2015x86 tool chain is used. Make sure, that **MSVC v140 VS2015 build tools** are installed                              <br></del>
+<del>2. `git clone -b CdePkg --recursive https://github.com/tianocore/edk2-staging.git`                                              <br></del>
+<del>3. run **LAUNCH.BAT**, that will                                                                                                <br></del>
+<del>    1. check build tools installed                                                                                              <br></del>
+<del>    2. download NASM and OPENSSL tools                                                                                          <br></del>
+<del>    3. download EDK2 and EDK2-NON-OSI from tianocore and CdeBinPkg                                                              <br></del>
+<del>    4. setup the build environment variables                                                                                    <br></del>
+<del>4. build the source tree:                                                                                                       <br></del>
+<del>    * For MINNOWBOARD BUILD type:<br>`BLD.bat REL` or `BLD.bat DEB`                                                             <br></del>
+<del>    * For  EMULATION  BUILD type:<br>`BLD.bat EMU`                                                                              <br></del>
+<del>                                                                                                                                <br></del>
+<del><del>5. build the CdeBinPkg source tree:</del><br>                                                                              <br></del>
+<del><del>* NOTE: CdeBinPkg CdeServices driver and CdeLib library are provided in binary format per default</del><br>                <br></del>
+<del><del>but can be recreated within a VS2019 session</del><br>                                                                     <br></del>
+<del><del>To do so, start CdeBinPkgSrc.sln with VS2019</del><br>                                                                     <br></del>
+<del>                                                                                                                                <br></del>
+<del>6. Emulation Build run/debug                                                                                                    <br></del>
+<del>    * run: `runemu.bat`                                                                                                         <br></del>
+<del>    * debug: `dbgemu.bat`<br>                                                                                                   <br></del>
+<del>      NOTE: To use `__debugbreak()` the debug engine (VS2019) must be connected to the process *before*                         <br></del>
+<del>            the breakpoint is reached.                                                                                          <br></del>
+<del>                                                                                                                                <br></del>
+<del>7. Create and debug a new **CdePkg** driver<br>                                                                                 <br></del>
+<del>   The [CdeValidationPkg](CdeValidationPkg/README.md#cdevalidationpkg) can be used                                              <br></del>
+<del>   to create and debug **CdePkg**-based drivers<br>                                                                             <br></del>
+<del>   ATTENTION: Only a small number of ANSI C library [functions are yet validated](implemented.md)                               <br></del>
 
 ## Related Projects
 | related project|annotation|
 |:-|:-|
-|[Torito C Library](https://github.com/KilianKegel/torito-C-Library#torito-c-library)|C Library for UEFI Shell only. All projects below are built on or derived from *Torito C Library*|
-|[Visual ANSI C for UEFI Shell](https://github.com/KilianKegel/Visual-ANSI-C-for-UEFI-Shell#visual-ansi-c-for-uefi-shell)|Getting started with Visual Studio for UEFI Shell and ANSI C cross-development.
-|[Visual DOS Tools for UEFI Shell](https://github.com/KilianKegel/Visual-DOS-Tools-for-UEFI-Shell#visual-dos-tools-for-uefi-shell)|more, find command implementation|
-|[Visual HWTools for UEFI Shell](https://github.com/KilianKegel/Visual-HWTools-for-UEFI-Shell#visual-hwtools-for-uefi-shell)|HWTools: PCI- and GPIOSpy for Baytrail. MemSpy for all.|
+|[**toro C Library**](https://github.com/KilianKegel/toro-C-Library#toro-c-library)|C Library for UEFI Shell only. All projects below are built on or derived from **toro C Library**|
+|[**Visual ANSI C for UEFI Shell**](https://github.com/KilianKegel/Visual-ANSI-C-for-UEFI-Shell#visual-ansi-c-for-uefi-shell)|Getting started with Visual Studio for UEFI Shell and ANSI C cross-development.
+|[**Visual DOS Tools for UEFI Shell**](https://github.com/KilianKegel/Visual-DOS-Tools-for-UEFI-Shell#visual-dos-tools-for-uefi-shell)|more, find command implementation|
+|[**Visual HWTools for UEFI Shell**](https://github.com/KilianKegel/Visual-HWTools-for-UEFI-Shell#visual-hwtools-for-uefi-shell)|HWTools: PCI- and GPIOSpy for Baytrail. MemSpy for all.|
 
 ## Revision history
-### 20230910 update CdePkgBlog
+### 2025-09-21 update CdePkgBlog
+* [**Engineering the UEFI C Library**](https://github.com/KilianKegel/edk2-stagingCDEPKG/tree/CdePkg/blogs/2025-09-21#cdepkgblog-2025-09-21)
+* remove EDK2, Minnowboard and CdePkg related source code
+### 2023-09-10 update CdePkgBlog
 * update [**ACPICA port to UEFI**](https://github.com/tianocore/edk2-staging/tree/CdePkg/blogs/2022-01-16#cdepkgblog-2022-01-16)
-
 ### 2022-01-16 CdePkgBlog
-* https://github.com/tianocore/edk2-staging/tree/CdePkg/blogs/2022-01-16#cdepkgblog-2022-01-16
+* [**Introduction of the ACPICA port to UEFI**](https://github.com/tianocore/edk2-staging/tree/CdePkg/blogs/2022-01-16#cdepkgblog-2022-01-16)
 ### 2021-12-19 CdePkgBlog
-* https://github.com/tianocore/edk2-staging/tree/CdePkg/blogs/2021-12-19#cdepkgblog-2021-12-19
+* [**Redfish on CdePkg**](https://github.com/tianocore/edk2-staging/tree/CdePkg/blogs/2021-12-19#cdepkgblog-2021-12-19)
 ### 2021-11-28 CdePkgBlog
-* https://github.com/tianocore/edk2-staging/tree/CdePkg/blogs/2021-11-28#cdepkgblog-2021-11-28
+* [**Using UEFI- and Standard-C-API in shell applications, creating MSDOS Tools for UEFI**](https://github.com/tianocore/edk2-staging/tree/CdePkg/blogs/2021-11-28#cdepkgblog-2021-11-28)
 ### 2021-11-14 CdePkgBlog
-* https://github.com/tianocore/edk2-staging/tree/CdePkg/blogs/2021-11-14#cdepkgblog-2021-11-14
+* [**My legacy toolbox**](https://github.com/tianocore/edk2-staging/tree/CdePkg/blogs/2021-11-14#cdepkgblog-2021-11-14)
 
 ### 20210811
 * force matching commits of `edk2-platforms` and `edk2-non-osi` for EDK2 source `edk2-stable202008`
