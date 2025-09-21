@@ -14,7 +14,7 @@
 * [Revision history](README.md#revision-history)
 
 ## CdePkg Blog
-<img src="https://github.com/KilianKegel/pictures/blob/master/New-icon.png"  width="150" height="150"> [![Repo name](https://github-readme-stats.vercel.app/api/pin/?username=KilianKegel&repo=Engineering-the-UEFI-C-Library)](https://github.com/KilianKegel/edk2-stagingCDEPKG/tree/CdePkg/blogs/2025-09-21#engineering-the-uefi-c-library)<br>
+<img src="https://github.com/KilianKegel/pictures/blob/master/New-icon.png"  width="150" height="150"> [![Repo name](https://github-readme-stats.vercel.app/api/pin/?username=KilianKegel&repo=Engineering-the-UEFI-C-Library)](https://github.com/tianocore/edk2-staging/tree/CdePkg/blogs/2025-09-21#engineering-the-uefi-c-library)<br>
 [![Repo name](https://github-readme-stats.vercel.app/api/pin/?username=KilianKegel&repo=Introduction-of-the-ACPICA-port-to-UEFI)](https://github.com/tianocore/edk2-staging/tree/CdePkg/blogs/2022-01-16#introduction-of-the-acpica-port-to-uefi)
 [![Repo name](https://github-readme-stats.vercel.app/api/pin/?username=KilianKegel&repo=RedFish-on-CdePkg)](https://github.com/tianocore/edk2-staging/tree/CdePkg/blogs/2021-12-19#redfish-on-cdepkg)
 [![Repo name](https://github-readme-stats.vercel.app/api/pin/?username=KilianKegel&repo=Using-UEFI--and-Standard-C-API-in-shell-applications-creating-MSDOS-Tools-for-UEFI)](https://github.com/tianocore/edk2-staging/tree/CdePkg/blogs/2021-11-28#using-uefi--and-standard-c-api-in-shell-applications-creating-msdos-tools-for-uefi)
@@ -236,7 +236,7 @@ Therefore the **CdePkg**'s C library will be validated by simple tests only, in 
 
 ## Revision history
 ### 2025-09-21 update CdePkgBlog
-* [**Engineering the UEFI C Library**](https://github.com/KilianKegel/edk2-stagingCDEPKG/tree/CdePkg/blogs/2025-09-21#cdepkgblog-2025-09-21)
+* [**Engineering the UEFI C Library**]8https://github.com/tianocore/edk2-staging/tree/CdePkg/blogs/2025-09-21#cdepkgblog-2025-09-21)
 * remove EDK2, Minnowboard and CdePkg related source code
 ### 2023-09-10 update CdePkgBlog
 * update [**ACPICA port to UEFI**](https://github.com/tianocore/edk2-staging/tree/CdePkg/blogs/2022-01-16#cdepkgblog-2022-01-16)
