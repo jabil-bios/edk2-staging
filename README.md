@@ -26,10 +26,7 @@ International Organization for Standardization (ISO) first in 1989 and 1990.
 The latest publicly available version of the standard from 1999 is to be found here: [C99](http://www.open-std.org/JTC1/SC22/WG14/www/docs/n1256.pdf).
 The original **ANSI X3.159-1989**, also known as C89 is not available anymore, but is leaked [here](https://nvlpubs.nist.gov/nistpubs/Legacy/FIPS/fipspub160.pdf).
 
-Both, the *language* (operators, expressions, declarations, specifiers, e.g. `if`, `while`,
-`+`, `&&`, `unsigned`, `char`, `struct` ...) and the *library* (functions, parameters, structures, macros, 
-e.g. `NDEBUG`, `CLOCKS_PER_SEC`, `raise()`, `scanf()`, `struct lconv`, `struct tm`, `errno` ...) are specified in this document (chapters 6 and 7)
-and are mandatory for an implementation that claims to meet the standard.
+#### Both, the *language* (operators, expressions, declarations, specifiers, e.g. `if`, `while`, `+`, `&&`, `unsigned`, `char`, `struct` ...) and the *library* (functions, parameters, structures, macros, e.g. NDEBUG`, `CLOCKS_PER_SEC`, `raise()`, `scanf()`, `struct lconv`, `struct tm`, `errno` ...) are specified in this document (chapters 6 and 7) and are mandatory for an implementation that claims to meet the standard.
 
 In a particular C compiler / C library implementation both are completely coordinated to 
 each other.
