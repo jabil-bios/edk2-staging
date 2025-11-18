@@ -239,9 +239,16 @@ RootComplexNodeParser (
   RootComplexInfo->Identifier = GetNextIortIdentifier ();
 
   Data = FdtGetProp (Fdt, RootComplexNode, "iommu-map", &DataSize);
-  if ((Data == NULL) || ((DataSize % (IOMMU_MAP_CELL_COUNT * sizeof (UINT32))) != 0)) {
+  if (Data == NULL) {
+    // Some guests (e.g. kvmtool) do not provide a SMMU, so the PCI node
+    // in the DTB lacks an 'iommu-map'. Therefore, return EFI_NOT_FOUND so
+    // that the boot can progress.
+    return EFI_NOT_FOUND;
+  }
+
+  if (((DataSize % (IOMMU_MAP_CELL_COUNT * sizeof (UINT32))) != 0)) {
     // If error or invalid number of cells (not multiple of IOMMU_MAP_CELL_COUNT).
-    ASSERT ((Data != NULL) && ((DataSize % (IOMMU_MAP_CELL_COUNT * sizeof (UINT32))) == 0));
+    ASSERT ((DataSize % (IOMMU_MAP_CELL_COUNT * sizeof (UINT32))) == 0);
     return EFI_ABORTED;
   }
 
@@ -378,7 +385,10 @@ ArmPciRootComplexParser (
 
     Status = RootComplexNodeParser (FdtParserHandle, Fdt, RootComplexNode, &RootComplexInfo);
     if (EFI_ERROR (Status)) {
-      ASSERT_EFI_ERROR (Status);
+      if (Status != EFI_NOT_FOUND) {
+        ASSERT_EFI_ERROR (Status);
+      }
+
       return Status;
     }
 
