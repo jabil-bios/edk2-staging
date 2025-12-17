@@ -69,15 +69,17 @@ HttpBootAddBootOption (
     return Status;
   }
 
-  Status = HttpBootCheckUriScheme (AsciiProxyUri);
-  if (EFI_ERROR (Status)) {
-    if (Status == EFI_INVALID_PARAMETER) {
-      DEBUG ((DEBUG_ERROR, "Error: Invalid URI address.\n"));
-    } else if (Status == EFI_ACCESS_DENIED) {
-      DEBUG ((DEBUG_ERROR, "Error: Access forbidden, only HTTPS connection is allowed.\n"));
-    }
+  if (StrLen (ProxyUri) != 0) {
+    Status = HttpBootCheckUriScheme (AsciiProxyUri);
+    if (EFI_ERROR (Status)) {
+      if (Status == EFI_INVALID_PARAMETER) {
+        DEBUG ((DEBUG_ERROR, "Error: Invalid URI address.\n"));
+      } else if (Status == EFI_ACCESS_DENIED) {
+        DEBUG ((DEBUG_ERROR, "Error: Access forbidden, only HTTPS connection is allowed.\n"));
+      }
 
-    return Status;
+      return Status;
+    }
   }
 
   //
@@ -186,6 +188,10 @@ HttpBootAddBootOption (
 ON_EXIT:
 
   if (TmpDevicePath != NULL) {
+    if (TmpDevicePath == NewDevicePath) {
+      NewDevicePath = NULL;
+    }
+
     FreePool (TmpDevicePath);
   }
 
