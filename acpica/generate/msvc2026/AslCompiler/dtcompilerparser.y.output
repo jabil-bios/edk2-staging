@@ -1,0 +1,215 @@
+Grammar
+
+    0 $accept: Table $end
+
+    1 Table: FieldList
+
+    2 FieldList: Field FieldList
+    3          | Field
+
+    4 Field: DT_PARSEOP_LABEL ':' Data
+
+    5 Data: MultiLineDataList
+    6     | Datum
+    7     | Datum MultiLineDataList
+
+    8 MultiLineDataList: MultiLineDataList MultiLineData
+    9                  | MultiLineData
+
+   10 MultiLineData: DT_PARSEOP_LINE_CONTINUATION Datum
+
+   11 Datum: DT_PARSEOP_DATA
+   12      | DT_PARSEOP_STRING_DATA
+
+
+Terminals, with rules where they appear
+
+$end (0) 0
+':' (58) 4
+error (256)
+DT_PARSEOP_DATA (258) 11
+DT_PARSEOP_LABEL (259) 4
+DT_PARSEOP_STRING_DATA (260) 12
+DT_PARSEOP_LINE_CONTINUATION (261) 10
+
+
+Nonterminals, with rules where they appear
+
+$accept (8)
+    on left: 0
+Table (9)
+    on left: 1, on right: 0
+FieldList (10)
+    on left: 2 3, on right: 1 2
+Field (11)
+    on left: 4, on right: 2 3
+Data (12)
+    on left: 5 6 7, on right: 4
+MultiLineDataList (13)
+    on left: 8 9, on right: 5 7 8
+MultiLineData (14)
+    on left: 10, on right: 8 9
+Datum (15)
+    on left: 11 12, on right: 6 7 10
+
+
+state 0
+
+    0 $accept: . Table $end
+
+    DT_PARSEOP_LABEL  shift, and go to state 1
+
+    Table      go to state 2
+    FieldList  go to state 3
+    Field      go to state 4
+
+
+state 1
+
+    4 Field: DT_PARSEOP_LABEL . ':' Data
+
+    ':'  shift, and go to state 5
+
+
+state 2
+
+    0 $accept: Table . $end
+
+    $end  shift, and go to state 6
+
+
+state 3
+
+    1 Table: FieldList .
+
+    $default  reduce using rule 1 (Table)
+
+
+state 4
+
+    2 FieldList: Field . FieldList
+    3          | Field .
+
+    DT_PARSEOP_LABEL  shift, and go to state 1
+
+    $default  reduce using rule 3 (FieldList)
+
+    FieldList  go to state 7
+    Field      go to state 4
+
+
+state 5
+
+    4 Field: DT_PARSEOP_LABEL ':' . Data
+
+    DT_PARSEOP_DATA               shift, and go to state 8
+    DT_PARSEOP_STRING_DATA        shift, and go to state 9
+    DT_PARSEOP_LINE_CONTINUATION  shift, and go to state 10
+
+    Data               go to state 11
+    MultiLineDataList  go to state 12
+    MultiLineData      go to state 13
+    Datum              go to state 14
+
+
+state 6
+
+    0 $accept: Table $end .
+
+    $default  accept
+
+
+state 7
+
+    2 FieldList: Field FieldList .
+
+    $default  reduce using rule 2 (FieldList)
+
+
+state 8
+
+   11 Datum: DT_PARSEOP_DATA .
+
+    $default  reduce using rule 11 (Datum)
+
+
+state 9
+
+   12 Datum: DT_PARSEOP_STRING_DATA .
+
+    $default  reduce using rule 12 (Datum)
+
+
+state 10
+
+   10 MultiLineData: DT_PARSEOP_LINE_CONTINUATION . Datum
+
+    DT_PARSEOP_DATA         shift, and go to state 8
+    DT_PARSEOP_STRING_DATA  shift, and go to state 9
+
+    Datum  go to state 15
+
+
+state 11
+
+    4 Field: DT_PARSEOP_LABEL ':' Data .
+
+    $default  reduce using rule 4 (Field)
+
+
+state 12
+
+    5 Data: MultiLineDataList .
+    8 MultiLineDataList: MultiLineDataList . MultiLineData
+
+    DT_PARSEOP_LINE_CONTINUATION  shift, and go to state 10
+
+    $default  reduce using rule 5 (Data)
+
+    MultiLineData  go to state 16
+
+
+state 13
+
+    9 MultiLineDataList: MultiLineData .
+
+    $default  reduce using rule 9 (MultiLineDataList)
+
+
+state 14
+
+    6 Data: Datum .
+    7     | Datum . MultiLineDataList
+
+    DT_PARSEOP_LINE_CONTINUATION  shift, and go to state 10
+
+    $default  reduce using rule 6 (Data)
+
+    MultiLineDataList  go to state 17
+    MultiLineData      go to state 13
+
+
+state 15
+
+   10 MultiLineData: DT_PARSEOP_LINE_CONTINUATION Datum .
+
+    $default  reduce using rule 10 (MultiLineData)
+
+
+state 16
+
+    8 MultiLineDataList: MultiLineDataList MultiLineData .
+
+    $default  reduce using rule 8 (MultiLineDataList)
+
+
+state 17
+
+    7 Data: Datum MultiLineDataList .
+    8 MultiLineDataList: MultiLineDataList . MultiLineData
+
+    DT_PARSEOP_LINE_CONTINUATION  shift, and go to state 10
+
+    $default  reduce using rule 7 (Data)
+
+    MultiLineData  go to state 16

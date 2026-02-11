@@ -1,0 +1,1255 @@
+Terminals unused in grammar
+
+   EXPOP_RESERVED1
+   EXPOP_RESERVED2
+
+
+Grammar
+
+    0 $accept: Value $end
+
+    1 Value: Expression EXPOP_NEW_LINE
+    2      | Expression EXPOP_EOF
+
+    3 Expression: EXPOP_LOGICAL_NOT Expression
+    4           | EXPOP_ONES_COMPLIMENT Expression
+    5           | Expression EXPOP_MULTIPLY Expression
+    6           | Expression EXPOP_DIVIDE Expression
+    7           | Expression EXPOP_MODULO Expression
+    8           | Expression EXPOP_ADD Expression
+    9           | Expression EXPOP_SUBTRACT Expression
+   10           | Expression EXPOP_SHIFT_RIGHT Expression
+   11           | Expression EXPOP_SHIFT_LEFT Expression
+   12           | Expression EXPOP_GREATER Expression
+   13           | Expression EXPOP_LESS Expression
+   14           | Expression EXPOP_GREATER_EQUAL Expression
+   15           | Expression EXPOP_LESS_EQUAL Expression
+   16           | Expression EXPOP_EQUAL Expression
+   17           | Expression EXPOP_NOT_EQUAL Expression
+   18           | Expression EXPOP_AND Expression
+   19           | Expression EXPOP_XOR Expression
+   20           | Expression EXPOP_OR Expression
+   21           | Expression EXPOP_LOGICAL_AND Expression
+   22           | Expression EXPOP_LOGICAL_OR Expression
+   23           | EXPOP_PAREN_OPEN Expression EXPOP_PAREN_CLOSE
+   24           | EXPOP_DEFINE EXPOP_PAREN_OPEN EXPOP_IDENTIFIER EXPOP_PAREN_CLOSE
+   25           | EXPOP_DEFINE EXPOP_IDENTIFIER
+   26           | EXPOP_IDENTIFIER
+   27           | EXPOP_NUMBER
+   28           | EXPOP_HEX_NUMBER
+
+
+Terminals, with rules where they appear
+
+$end (0) 0
+error (256)
+EXPOP_EOF (258) 2
+EXPOP_NEW_LINE (259) 1
+EXPOP_NUMBER (260) 27
+EXPOP_HEX_NUMBER (261) 28
+EXPOP_RESERVED1 (262)
+EXPOP_RESERVED2 (263)
+EXPOP_PAREN_OPEN (264) 23 24
+EXPOP_PAREN_CLOSE (265) 23 24
+EXPOP_LOGICAL_OR (266) 22
+EXPOP_LOGICAL_AND (267) 21
+EXPOP_OR (268) 20
+EXPOP_XOR (269) 19
+EXPOP_AND (270) 18
+EXPOP_NOT_EQUAL (271) 17
+EXPOP_EQUAL (272) 16
+EXPOP_LESS_EQUAL (273) 15
+EXPOP_GREATER_EQUAL (274) 14
+EXPOP_LESS (275) 13
+EXPOP_GREATER (276) 12
+EXPOP_SHIFT_LEFT (277) 11
+EXPOP_SHIFT_RIGHT (278) 10
+EXPOP_SUBTRACT (279) 9
+EXPOP_ADD (280) 8
+EXPOP_MODULO (281) 7
+EXPOP_DIVIDE (282) 6
+EXPOP_MULTIPLY (283) 5
+EXPOP_LOGICAL_NOT (284) 3
+EXPOP_ONES_COMPLIMENT (285) 4
+EXPOP_DEFINE (286) 24 25
+EXPOP_IDENTIFIER (287) 24 25 26
+
+
+Nonterminals, with rules where they appear
+
+$accept (33)
+    on left: 0
+Value (34)
+    on left: 1 2, on right: 0
+Expression (35)
+    on left: 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23
+    24 25 26 27 28, on right: 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16
+    17 18 19 20 21 22 23
+
+
+state 0
+
+    0 $accept: . Value $end
+
+    EXPOP_NUMBER           shift, and go to state 1
+    EXPOP_HEX_NUMBER       shift, and go to state 2
+    EXPOP_PAREN_OPEN       shift, and go to state 3
+    EXPOP_LOGICAL_NOT      shift, and go to state 4
+    EXPOP_ONES_COMPLIMENT  shift, and go to state 5
+    EXPOP_DEFINE           shift, and go to state 6
+    EXPOP_IDENTIFIER       shift, and go to state 7
+
+    Value       go to state 8
+    Expression  go to state 9
+
+
+state 1
+
+   27 Expression: EXPOP_NUMBER .
+
+    $default  reduce using rule 27 (Expression)
+
+
+state 2
+
+   28 Expression: EXPOP_HEX_NUMBER .
+
+    $default  reduce using rule 28 (Expression)
+
+
+state 3
+
+   23 Expression: EXPOP_PAREN_OPEN . Expression EXPOP_PAREN_CLOSE
+
+    EXPOP_NUMBER           shift, and go to state 1
+    EXPOP_HEX_NUMBER       shift, and go to state 2
+    EXPOP_PAREN_OPEN       shift, and go to state 3
+    EXPOP_LOGICAL_NOT      shift, and go to state 4
+    EXPOP_ONES_COMPLIMENT  shift, and go to state 5
+    EXPOP_DEFINE           shift, and go to state 6
+    EXPOP_IDENTIFIER       shift, and go to state 7
+
+    Expression  go to state 10
+
+
+state 4
+
+    3 Expression: EXPOP_LOGICAL_NOT . Expression
+
+    EXPOP_NUMBER           shift, and go to state 1
+    EXPOP_HEX_NUMBER       shift, and go to state 2
+    EXPOP_PAREN_OPEN       shift, and go to state 3
+    EXPOP_LOGICAL_NOT      shift, and go to state 4
+    EXPOP_ONES_COMPLIMENT  shift, and go to state 5
+    EXPOP_DEFINE           shift, and go to state 6
+    EXPOP_IDENTIFIER       shift, and go to state 7
+
+    Expression  go to state 11
+
+
+state 5
+
+    4 Expression: EXPOP_ONES_COMPLIMENT . Expression
+
+    EXPOP_NUMBER           shift, and go to state 1
+    EXPOP_HEX_NUMBER       shift, and go to state 2
+    EXPOP_PAREN_OPEN       shift, and go to state 3
+    EXPOP_LOGICAL_NOT      shift, and go to state 4
+    EXPOP_ONES_COMPLIMENT  shift, and go to state 5
+    EXPOP_DEFINE           shift, and go to state 6
+    EXPOP_IDENTIFIER       shift, and go to state 7
+
+    Expression  go to state 12
+
+
+state 6
+
+   24 Expression: EXPOP_DEFINE . EXPOP_PAREN_OPEN EXPOP_IDENTIFIER EXPOP_PAREN_CLOSE
+   25           | EXPOP_DEFINE . EXPOP_IDENTIFIER
+
+    EXPOP_PAREN_OPEN  shift, and go to state 13
+    EXPOP_IDENTIFIER  shift, and go to state 14
+
+
+state 7
+
+   26 Expression: EXPOP_IDENTIFIER .
+
+    $default  reduce using rule 26 (Expression)
+
+
+state 8
+
+    0 $accept: Value . $end
+
+    $end  shift, and go to state 15
+
+
+state 9
+
+    1 Value: Expression . EXPOP_NEW_LINE
+    2      | Expression . EXPOP_EOF
+    5 Expression: Expression . EXPOP_MULTIPLY Expression
+    6           | Expression . EXPOP_DIVIDE Expression
+    7           | Expression . EXPOP_MODULO Expression
+    8           | Expression . EXPOP_ADD Expression
+    9           | Expression . EXPOP_SUBTRACT Expression
+   10           | Expression . EXPOP_SHIFT_RIGHT Expression
+   11           | Expression . EXPOP_SHIFT_LEFT Expression
+   12           | Expression . EXPOP_GREATER Expression
+   13           | Expression . EXPOP_LESS Expression
+   14           | Expression . EXPOP_GREATER_EQUAL Expression
+   15           | Expression . EXPOP_LESS_EQUAL Expression
+   16           | Expression . EXPOP_EQUAL Expression
+   17           | Expression . EXPOP_NOT_EQUAL Expression
+   18           | Expression . EXPOP_AND Expression
+   19           | Expression . EXPOP_XOR Expression
+   20           | Expression . EXPOP_OR Expression
+   21           | Expression . EXPOP_LOGICAL_AND Expression
+   22           | Expression . EXPOP_LOGICAL_OR Expression
+
+    EXPOP_EOF            shift, and go to state 16
+    EXPOP_NEW_LINE       shift, and go to state 17
+    EXPOP_LOGICAL_OR     shift, and go to state 18
+    EXPOP_LOGICAL_AND    shift, and go to state 19
+    EXPOP_OR             shift, and go to state 20
+    EXPOP_XOR            shift, and go to state 21
+    EXPOP_AND            shift, and go to state 22
+    EXPOP_NOT_EQUAL      shift, and go to state 23
+    EXPOP_EQUAL          shift, and go to state 24
+    EXPOP_LESS_EQUAL     shift, and go to state 25
+    EXPOP_GREATER_EQUAL  shift, and go to state 26
+    EXPOP_LESS           shift, and go to state 27
+    EXPOP_GREATER        shift, and go to state 28
+    EXPOP_SHIFT_LEFT     shift, and go to state 29
+    EXPOP_SHIFT_RIGHT    shift, and go to state 30
+    EXPOP_SUBTRACT       shift, and go to state 31
+    EXPOP_ADD            shift, and go to state 32
+    EXPOP_MODULO         shift, and go to state 33
+    EXPOP_DIVIDE         shift, and go to state 34
+    EXPOP_MULTIPLY       shift, and go to state 35
+
+
+state 10
+
+    5 Expression: Expression . EXPOP_MULTIPLY Expression
+    6           | Expression . EXPOP_DIVIDE Expression
+    7           | Expression . EXPOP_MODULO Expression
+    8           | Expression . EXPOP_ADD Expression
+    9           | Expression . EXPOP_SUBTRACT Expression
+   10           | Expression . EXPOP_SHIFT_RIGHT Expression
+   11           | Expression . EXPOP_SHIFT_LEFT Expression
+   12           | Expression . EXPOP_GREATER Expression
+   13           | Expression . EXPOP_LESS Expression
+   14           | Expression . EXPOP_GREATER_EQUAL Expression
+   15           | Expression . EXPOP_LESS_EQUAL Expression
+   16           | Expression . EXPOP_EQUAL Expression
+   17           | Expression . EXPOP_NOT_EQUAL Expression
+   18           | Expression . EXPOP_AND Expression
+   19           | Expression . EXPOP_XOR Expression
+   20           | Expression . EXPOP_OR Expression
+   21           | Expression . EXPOP_LOGICAL_AND Expression
+   22           | Expression . EXPOP_LOGICAL_OR Expression
+   23           | EXPOP_PAREN_OPEN Expression . EXPOP_PAREN_CLOSE
+
+    EXPOP_PAREN_CLOSE    shift, and go to state 36
+    EXPOP_LOGICAL_OR     shift, and go to state 18
+    EXPOP_LOGICAL_AND    shift, and go to state 19
+    EXPOP_OR             shift, and go to state 20
+    EXPOP_XOR            shift, and go to state 21
+    EXPOP_AND            shift, and go to state 22
+    EXPOP_NOT_EQUAL      shift, and go to state 23
+    EXPOP_EQUAL          shift, and go to state 24
+    EXPOP_LESS_EQUAL     shift, and go to state 25
+    EXPOP_GREATER_EQUAL  shift, and go to state 26
+    EXPOP_LESS           shift, and go to state 27
+    EXPOP_GREATER        shift, and go to state 28
+    EXPOP_SHIFT_LEFT     shift, and go to state 29
+    EXPOP_SHIFT_RIGHT    shift, and go to state 30
+    EXPOP_SUBTRACT       shift, and go to state 31
+    EXPOP_ADD            shift, and go to state 32
+    EXPOP_MODULO         shift, and go to state 33
+    EXPOP_DIVIDE         shift, and go to state 34
+    EXPOP_MULTIPLY       shift, and go to state 35
+
+
+state 11
+
+    3 Expression: EXPOP_LOGICAL_NOT Expression .
+    5           | Expression . EXPOP_MULTIPLY Expression
+    6           | Expression . EXPOP_DIVIDE Expression
+    7           | Expression . EXPOP_MODULO Expression
+    8           | Expression . EXPOP_ADD Expression
+    9           | Expression . EXPOP_SUBTRACT Expression
+   10           | Expression . EXPOP_SHIFT_RIGHT Expression
+   11           | Expression . EXPOP_SHIFT_LEFT Expression
+   12           | Expression . EXPOP_GREATER Expression
+   13           | Expression . EXPOP_LESS Expression
+   14           | Expression . EXPOP_GREATER_EQUAL Expression
+   15           | Expression . EXPOP_LESS_EQUAL Expression
+   16           | Expression . EXPOP_EQUAL Expression
+   17           | Expression . EXPOP_NOT_EQUAL Expression
+   18           | Expression . EXPOP_AND Expression
+   19           | Expression . EXPOP_XOR Expression
+   20           | Expression . EXPOP_OR Expression
+   21           | Expression . EXPOP_LOGICAL_AND Expression
+   22           | Expression . EXPOP_LOGICAL_OR Expression
+
+    $default  reduce using rule 3 (Expression)
+
+
+state 12
+
+    4 Expression: EXPOP_ONES_COMPLIMENT Expression .
+    5           | Expression . EXPOP_MULTIPLY Expression
+    6           | Expression . EXPOP_DIVIDE Expression
+    7           | Expression . EXPOP_MODULO Expression
+    8           | Expression . EXPOP_ADD Expression
+    9           | Expression . EXPOP_SUBTRACT Expression
+   10           | Expression . EXPOP_SHIFT_RIGHT Expression
+   11           | Expression . EXPOP_SHIFT_LEFT Expression
+   12           | Expression . EXPOP_GREATER Expression
+   13           | Expression . EXPOP_LESS Expression
+   14           | Expression . EXPOP_GREATER_EQUAL Expression
+   15           | Expression . EXPOP_LESS_EQUAL Expression
+   16           | Expression . EXPOP_EQUAL Expression
+   17           | Expression . EXPOP_NOT_EQUAL Expression
+   18           | Expression . EXPOP_AND Expression
+   19           | Expression . EXPOP_XOR Expression
+   20           | Expression . EXPOP_OR Expression
+   21           | Expression . EXPOP_LOGICAL_AND Expression
+   22           | Expression . EXPOP_LOGICAL_OR Expression
+
+    $default  reduce using rule 4 (Expression)
+
+
+state 13
+
+   24 Expression: EXPOP_DEFINE EXPOP_PAREN_OPEN . EXPOP_IDENTIFIER EXPOP_PAREN_CLOSE
+
+    EXPOP_IDENTIFIER  shift, and go to state 37
+
+
+state 14
+
+   25 Expression: EXPOP_DEFINE EXPOP_IDENTIFIER .
+
+    $default  reduce using rule 25 (Expression)
+
+
+state 15
+
+    0 $accept: Value $end .
+
+    $default  accept
+
+
+state 16
+
+    2 Value: Expression EXPOP_EOF .
+
+    $default  reduce using rule 2 (Value)
+
+
+state 17
+
+    1 Value: Expression EXPOP_NEW_LINE .
+
+    $default  reduce using rule 1 (Value)
+
+
+state 18
+
+   22 Expression: Expression EXPOP_LOGICAL_OR . Expression
+
+    EXPOP_NUMBER           shift, and go to state 1
+    EXPOP_HEX_NUMBER       shift, and go to state 2
+    EXPOP_PAREN_OPEN       shift, and go to state 3
+    EXPOP_LOGICAL_NOT      shift, and go to state 4
+    EXPOP_ONES_COMPLIMENT  shift, and go to state 5
+    EXPOP_DEFINE           shift, and go to state 6
+    EXPOP_IDENTIFIER       shift, and go to state 7
+
+    Expression  go to state 38
+
+
+state 19
+
+   21 Expression: Expression EXPOP_LOGICAL_AND . Expression
+
+    EXPOP_NUMBER           shift, and go to state 1
+    EXPOP_HEX_NUMBER       shift, and go to state 2
+    EXPOP_PAREN_OPEN       shift, and go to state 3
+    EXPOP_LOGICAL_NOT      shift, and go to state 4
+    EXPOP_ONES_COMPLIMENT  shift, and go to state 5
+    EXPOP_DEFINE           shift, and go to state 6
+    EXPOP_IDENTIFIER       shift, and go to state 7
+
+    Expression  go to state 39
+
+
+state 20
+
+   20 Expression: Expression EXPOP_OR . Expression
+
+    EXPOP_NUMBER           shift, and go to state 1
+    EXPOP_HEX_NUMBER       shift, and go to state 2
+    EXPOP_PAREN_OPEN       shift, and go to state 3
+    EXPOP_LOGICAL_NOT      shift, and go to state 4
+    EXPOP_ONES_COMPLIMENT  shift, and go to state 5
+    EXPOP_DEFINE           shift, and go to state 6
+    EXPOP_IDENTIFIER       shift, and go to state 7
+
+    Expression  go to state 40
+
+
+state 21
+
+   19 Expression: Expression EXPOP_XOR . Expression
+
+    EXPOP_NUMBER           shift, and go to state 1
+    EXPOP_HEX_NUMBER       shift, and go to state 2
+    EXPOP_PAREN_OPEN       shift, and go to state 3
+    EXPOP_LOGICAL_NOT      shift, and go to state 4
+    EXPOP_ONES_COMPLIMENT  shift, and go to state 5
+    EXPOP_DEFINE           shift, and go to state 6
+    EXPOP_IDENTIFIER       shift, and go to state 7
+
+    Expression  go to state 41
+
+
+state 22
+
+   18 Expression: Expression EXPOP_AND . Expression
+
+    EXPOP_NUMBER           shift, and go to state 1
+    EXPOP_HEX_NUMBER       shift, and go to state 2
+    EXPOP_PAREN_OPEN       shift, and go to state 3
+    EXPOP_LOGICAL_NOT      shift, and go to state 4
+    EXPOP_ONES_COMPLIMENT  shift, and go to state 5
+    EXPOP_DEFINE           shift, and go to state 6
+    EXPOP_IDENTIFIER       shift, and go to state 7
+
+    Expression  go to state 42
+
+
+state 23
+
+   17 Expression: Expression EXPOP_NOT_EQUAL . Expression
+
+    EXPOP_NUMBER           shift, and go to state 1
+    EXPOP_HEX_NUMBER       shift, and go to state 2
+    EXPOP_PAREN_OPEN       shift, and go to state 3
+    EXPOP_LOGICAL_NOT      shift, and go to state 4
+    EXPOP_ONES_COMPLIMENT  shift, and go to state 5
+    EXPOP_DEFINE           shift, and go to state 6
+    EXPOP_IDENTIFIER       shift, and go to state 7
+
+    Expression  go to state 43
+
+
+state 24
+
+   16 Expression: Expression EXPOP_EQUAL . Expression
+
+    EXPOP_NUMBER           shift, and go to state 1
+    EXPOP_HEX_NUMBER       shift, and go to state 2
+    EXPOP_PAREN_OPEN       shift, and go to state 3
+    EXPOP_LOGICAL_NOT      shift, and go to state 4
+    EXPOP_ONES_COMPLIMENT  shift, and go to state 5
+    EXPOP_DEFINE           shift, and go to state 6
+    EXPOP_IDENTIFIER       shift, and go to state 7
+
+    Expression  go to state 44
+
+
+state 25
+
+   15 Expression: Expression EXPOP_LESS_EQUAL . Expression
+
+    EXPOP_NUMBER           shift, and go to state 1
+    EXPOP_HEX_NUMBER       shift, and go to state 2
+    EXPOP_PAREN_OPEN       shift, and go to state 3
+    EXPOP_LOGICAL_NOT      shift, and go to state 4
+    EXPOP_ONES_COMPLIMENT  shift, and go to state 5
+    EXPOP_DEFINE           shift, and go to state 6
+    EXPOP_IDENTIFIER       shift, and go to state 7
+
+    Expression  go to state 45
+
+
+state 26
+
+   14 Expression: Expression EXPOP_GREATER_EQUAL . Expression
+
+    EXPOP_NUMBER           shift, and go to state 1
+    EXPOP_HEX_NUMBER       shift, and go to state 2
+    EXPOP_PAREN_OPEN       shift, and go to state 3
+    EXPOP_LOGICAL_NOT      shift, and go to state 4
+    EXPOP_ONES_COMPLIMENT  shift, and go to state 5
+    EXPOP_DEFINE           shift, and go to state 6
+    EXPOP_IDENTIFIER       shift, and go to state 7
+
+    Expression  go to state 46
+
+
+state 27
+
+   13 Expression: Expression EXPOP_LESS . Expression
+
+    EXPOP_NUMBER           shift, and go to state 1
+    EXPOP_HEX_NUMBER       shift, and go to state 2
+    EXPOP_PAREN_OPEN       shift, and go to state 3
+    EXPOP_LOGICAL_NOT      shift, and go to state 4
+    EXPOP_ONES_COMPLIMENT  shift, and go to state 5
+    EXPOP_DEFINE           shift, and go to state 6
+    EXPOP_IDENTIFIER       shift, and go to state 7
+
+    Expression  go to state 47
+
+
+state 28
+
+   12 Expression: Expression EXPOP_GREATER . Expression
+
+    EXPOP_NUMBER           shift, and go to state 1
+    EXPOP_HEX_NUMBER       shift, and go to state 2
+    EXPOP_PAREN_OPEN       shift, and go to state 3
+    EXPOP_LOGICAL_NOT      shift, and go to state 4
+    EXPOP_ONES_COMPLIMENT  shift, and go to state 5
+    EXPOP_DEFINE           shift, and go to state 6
+    EXPOP_IDENTIFIER       shift, and go to state 7
+
+    Expression  go to state 48
+
+
+state 29
+
+   11 Expression: Expression EXPOP_SHIFT_LEFT . Expression
+
+    EXPOP_NUMBER           shift, and go to state 1
+    EXPOP_HEX_NUMBER       shift, and go to state 2
+    EXPOP_PAREN_OPEN       shift, and go to state 3
+    EXPOP_LOGICAL_NOT      shift, and go to state 4
+    EXPOP_ONES_COMPLIMENT  shift, and go to state 5
+    EXPOP_DEFINE           shift, and go to state 6
+    EXPOP_IDENTIFIER       shift, and go to state 7
+
+    Expression  go to state 49
+
+
+state 30
+
+   10 Expression: Expression EXPOP_SHIFT_RIGHT . Expression
+
+    EXPOP_NUMBER           shift, and go to state 1
+    EXPOP_HEX_NUMBER       shift, and go to state 2
+    EXPOP_PAREN_OPEN       shift, and go to state 3
+    EXPOP_LOGICAL_NOT      shift, and go to state 4
+    EXPOP_ONES_COMPLIMENT  shift, and go to state 5
+    EXPOP_DEFINE           shift, and go to state 6
+    EXPOP_IDENTIFIER       shift, and go to state 7
+
+    Expression  go to state 50
+
+
+state 31
+
+    9 Expression: Expression EXPOP_SUBTRACT . Expression
+
+    EXPOP_NUMBER           shift, and go to state 1
+    EXPOP_HEX_NUMBER       shift, and go to state 2
+    EXPOP_PAREN_OPEN       shift, and go to state 3
+    EXPOP_LOGICAL_NOT      shift, and go to state 4
+    EXPOP_ONES_COMPLIMENT  shift, and go to state 5
+    EXPOP_DEFINE           shift, and go to state 6
+    EXPOP_IDENTIFIER       shift, and go to state 7
+
+    Expression  go to state 51
+
+
+state 32
+
+    8 Expression: Expression EXPOP_ADD . Expression
+
+    EXPOP_NUMBER           shift, and go to state 1
+    EXPOP_HEX_NUMBER       shift, and go to state 2
+    EXPOP_PAREN_OPEN       shift, and go to state 3
+    EXPOP_LOGICAL_NOT      shift, and go to state 4
+    EXPOP_ONES_COMPLIMENT  shift, and go to state 5
+    EXPOP_DEFINE           shift, and go to state 6
+    EXPOP_IDENTIFIER       shift, and go to state 7
+
+    Expression  go to state 52
+
+
+state 33
+
+    7 Expression: Expression EXPOP_MODULO . Expression
+
+    EXPOP_NUMBER           shift, and go to state 1
+    EXPOP_HEX_NUMBER       shift, and go to state 2
+    EXPOP_PAREN_OPEN       shift, and go to state 3
+    EXPOP_LOGICAL_NOT      shift, and go to state 4
+    EXPOP_ONES_COMPLIMENT  shift, and go to state 5
+    EXPOP_DEFINE           shift, and go to state 6
+    EXPOP_IDENTIFIER       shift, and go to state 7
+
+    Expression  go to state 53
+
+
+state 34
+
+    6 Expression: Expression EXPOP_DIVIDE . Expression
+
+    EXPOP_NUMBER           shift, and go to state 1
+    EXPOP_HEX_NUMBER       shift, and go to state 2
+    EXPOP_PAREN_OPEN       shift, and go to state 3
+    EXPOP_LOGICAL_NOT      shift, and go to state 4
+    EXPOP_ONES_COMPLIMENT  shift, and go to state 5
+    EXPOP_DEFINE           shift, and go to state 6
+    EXPOP_IDENTIFIER       shift, and go to state 7
+
+    Expression  go to state 54
+
+
+state 35
+
+    5 Expression: Expression EXPOP_MULTIPLY . Expression
+
+    EXPOP_NUMBER           shift, and go to state 1
+    EXPOP_HEX_NUMBER       shift, and go to state 2
+    EXPOP_PAREN_OPEN       shift, and go to state 3
+    EXPOP_LOGICAL_NOT      shift, and go to state 4
+    EXPOP_ONES_COMPLIMENT  shift, and go to state 5
+    EXPOP_DEFINE           shift, and go to state 6
+    EXPOP_IDENTIFIER       shift, and go to state 7
+
+    Expression  go to state 55
+
+
+state 36
+
+   23 Expression: EXPOP_PAREN_OPEN Expression EXPOP_PAREN_CLOSE .
+
+    $default  reduce using rule 23 (Expression)
+
+
+state 37
+
+   24 Expression: EXPOP_DEFINE EXPOP_PAREN_OPEN EXPOP_IDENTIFIER . EXPOP_PAREN_CLOSE
+
+    EXPOP_PAREN_CLOSE  shift, and go to state 56
+
+
+state 38
+
+    5 Expression: Expression . EXPOP_MULTIPLY Expression
+    6           | Expression . EXPOP_DIVIDE Expression
+    7           | Expression . EXPOP_MODULO Expression
+    8           | Expression . EXPOP_ADD Expression
+    9           | Expression . EXPOP_SUBTRACT Expression
+   10           | Expression . EXPOP_SHIFT_RIGHT Expression
+   11           | Expression . EXPOP_SHIFT_LEFT Expression
+   12           | Expression . EXPOP_GREATER Expression
+   13           | Expression . EXPOP_LESS Expression
+   14           | Expression . EXPOP_GREATER_EQUAL Expression
+   15           | Expression . EXPOP_LESS_EQUAL Expression
+   16           | Expression . EXPOP_EQUAL Expression
+   17           | Expression . EXPOP_NOT_EQUAL Expression
+   18           | Expression . EXPOP_AND Expression
+   19           | Expression . EXPOP_XOR Expression
+   20           | Expression . EXPOP_OR Expression
+   21           | Expression . EXPOP_LOGICAL_AND Expression
+   22           | Expression . EXPOP_LOGICAL_OR Expression
+   22           | Expression EXPOP_LOGICAL_OR Expression .
+
+    EXPOP_LOGICAL_AND    shift, and go to state 19
+    EXPOP_OR             shift, and go to state 20
+    EXPOP_XOR            shift, and go to state 21
+    EXPOP_AND            shift, and go to state 22
+    EXPOP_NOT_EQUAL      shift, and go to state 23
+    EXPOP_EQUAL          shift, and go to state 24
+    EXPOP_LESS_EQUAL     shift, and go to state 25
+    EXPOP_GREATER_EQUAL  shift, and go to state 26
+    EXPOP_LESS           shift, and go to state 27
+    EXPOP_GREATER        shift, and go to state 28
+    EXPOP_SHIFT_LEFT     shift, and go to state 29
+    EXPOP_SHIFT_RIGHT    shift, and go to state 30
+    EXPOP_SUBTRACT       shift, and go to state 31
+    EXPOP_ADD            shift, and go to state 32
+    EXPOP_MODULO         shift, and go to state 33
+    EXPOP_DIVIDE         shift, and go to state 34
+    EXPOP_MULTIPLY       shift, and go to state 35
+
+    $default  reduce using rule 22 (Expression)
+
+
+state 39
+
+    5 Expression: Expression . EXPOP_MULTIPLY Expression
+    6           | Expression . EXPOP_DIVIDE Expression
+    7           | Expression . EXPOP_MODULO Expression
+    8           | Expression . EXPOP_ADD Expression
+    9           | Expression . EXPOP_SUBTRACT Expression
+   10           | Expression . EXPOP_SHIFT_RIGHT Expression
+   11           | Expression . EXPOP_SHIFT_LEFT Expression
+   12           | Expression . EXPOP_GREATER Expression
+   13           | Expression . EXPOP_LESS Expression
+   14           | Expression . EXPOP_GREATER_EQUAL Expression
+   15           | Expression . EXPOP_LESS_EQUAL Expression
+   16           | Expression . EXPOP_EQUAL Expression
+   17           | Expression . EXPOP_NOT_EQUAL Expression
+   18           | Expression . EXPOP_AND Expression
+   19           | Expression . EXPOP_XOR Expression
+   20           | Expression . EXPOP_OR Expression
+   21           | Expression . EXPOP_LOGICAL_AND Expression
+   21           | Expression EXPOP_LOGICAL_AND Expression .
+   22           | Expression . EXPOP_LOGICAL_OR Expression
+
+    EXPOP_OR             shift, and go to state 20
+    EXPOP_XOR            shift, and go to state 21
+    EXPOP_AND            shift, and go to state 22
+    EXPOP_NOT_EQUAL      shift, and go to state 23
+    EXPOP_EQUAL          shift, and go to state 24
+    EXPOP_LESS_EQUAL     shift, and go to state 25
+    EXPOP_GREATER_EQUAL  shift, and go to state 26
+    EXPOP_LESS           shift, and go to state 27
+    EXPOP_GREATER        shift, and go to state 28
+    EXPOP_SHIFT_LEFT     shift, and go to state 29
+    EXPOP_SHIFT_RIGHT    shift, and go to state 30
+    EXPOP_SUBTRACT       shift, and go to state 31
+    EXPOP_ADD            shift, and go to state 32
+    EXPOP_MODULO         shift, and go to state 33
+    EXPOP_DIVIDE         shift, and go to state 34
+    EXPOP_MULTIPLY       shift, and go to state 35
+
+    $default  reduce using rule 21 (Expression)
+
+
+state 40
+
+    5 Expression: Expression . EXPOP_MULTIPLY Expression
+    6           | Expression . EXPOP_DIVIDE Expression
+    7           | Expression . EXPOP_MODULO Expression
+    8           | Expression . EXPOP_ADD Expression
+    9           | Expression . EXPOP_SUBTRACT Expression
+   10           | Expression . EXPOP_SHIFT_RIGHT Expression
+   11           | Expression . EXPOP_SHIFT_LEFT Expression
+   12           | Expression . EXPOP_GREATER Expression
+   13           | Expression . EXPOP_LESS Expression
+   14           | Expression . EXPOP_GREATER_EQUAL Expression
+   15           | Expression . EXPOP_LESS_EQUAL Expression
+   16           | Expression . EXPOP_EQUAL Expression
+   17           | Expression . EXPOP_NOT_EQUAL Expression
+   18           | Expression . EXPOP_AND Expression
+   19           | Expression . EXPOP_XOR Expression
+   20           | Expression . EXPOP_OR Expression
+   20           | Expression EXPOP_OR Expression .
+   21           | Expression . EXPOP_LOGICAL_AND Expression
+   22           | Expression . EXPOP_LOGICAL_OR Expression
+
+    EXPOP_XOR            shift, and go to state 21
+    EXPOP_AND            shift, and go to state 22
+    EXPOP_NOT_EQUAL      shift, and go to state 23
+    EXPOP_EQUAL          shift, and go to state 24
+    EXPOP_LESS_EQUAL     shift, and go to state 25
+    EXPOP_GREATER_EQUAL  shift, and go to state 26
+    EXPOP_LESS           shift, and go to state 27
+    EXPOP_GREATER        shift, and go to state 28
+    EXPOP_SHIFT_LEFT     shift, and go to state 29
+    EXPOP_SHIFT_RIGHT    shift, and go to state 30
+    EXPOP_SUBTRACT       shift, and go to state 31
+    EXPOP_ADD            shift, and go to state 32
+    EXPOP_MODULO         shift, and go to state 33
+    EXPOP_DIVIDE         shift, and go to state 34
+    EXPOP_MULTIPLY       shift, and go to state 35
+
+    $default  reduce using rule 20 (Expression)
+
+
+state 41
+
+    5 Expression: Expression . EXPOP_MULTIPLY Expression
+    6           | Expression . EXPOP_DIVIDE Expression
+    7           | Expression . EXPOP_MODULO Expression
+    8           | Expression . EXPOP_ADD Expression
+    9           | Expression . EXPOP_SUBTRACT Expression
+   10           | Expression . EXPOP_SHIFT_RIGHT Expression
+   11           | Expression . EXPOP_SHIFT_LEFT Expression
+   12           | Expression . EXPOP_GREATER Expression
+   13           | Expression . EXPOP_LESS Expression
+   14           | Expression . EXPOP_GREATER_EQUAL Expression
+   15           | Expression . EXPOP_LESS_EQUAL Expression
+   16           | Expression . EXPOP_EQUAL Expression
+   17           | Expression . EXPOP_NOT_EQUAL Expression
+   18           | Expression . EXPOP_AND Expression
+   19           | Expression . EXPOP_XOR Expression
+   19           | Expression EXPOP_XOR Expression .
+   20           | Expression . EXPOP_OR Expression
+   21           | Expression . EXPOP_LOGICAL_AND Expression
+   22           | Expression . EXPOP_LOGICAL_OR Expression
+
+    EXPOP_AND            shift, and go to state 22
+    EXPOP_NOT_EQUAL      shift, and go to state 23
+    EXPOP_EQUAL          shift, and go to state 24
+    EXPOP_LESS_EQUAL     shift, and go to state 25
+    EXPOP_GREATER_EQUAL  shift, and go to state 26
+    EXPOP_LESS           shift, and go to state 27
+    EXPOP_GREATER        shift, and go to state 28
+    EXPOP_SHIFT_LEFT     shift, and go to state 29
+    EXPOP_SHIFT_RIGHT    shift, and go to state 30
+    EXPOP_SUBTRACT       shift, and go to state 31
+    EXPOP_ADD            shift, and go to state 32
+    EXPOP_MODULO         shift, and go to state 33
+    EXPOP_DIVIDE         shift, and go to state 34
+    EXPOP_MULTIPLY       shift, and go to state 35
+
+    $default  reduce using rule 19 (Expression)
+
+
+state 42
+
+    5 Expression: Expression . EXPOP_MULTIPLY Expression
+    6           | Expression . EXPOP_DIVIDE Expression
+    7           | Expression . EXPOP_MODULO Expression
+    8           | Expression . EXPOP_ADD Expression
+    9           | Expression . EXPOP_SUBTRACT Expression
+   10           | Expression . EXPOP_SHIFT_RIGHT Expression
+   11           | Expression . EXPOP_SHIFT_LEFT Expression
+   12           | Expression . EXPOP_GREATER Expression
+   13           | Expression . EXPOP_LESS Expression
+   14           | Expression . EXPOP_GREATER_EQUAL Expression
+   15           | Expression . EXPOP_LESS_EQUAL Expression
+   16           | Expression . EXPOP_EQUAL Expression
+   17           | Expression . EXPOP_NOT_EQUAL Expression
+   18           | Expression . EXPOP_AND Expression
+   18           | Expression EXPOP_AND Expression .
+   19           | Expression . EXPOP_XOR Expression
+   20           | Expression . EXPOP_OR Expression
+   21           | Expression . EXPOP_LOGICAL_AND Expression
+   22           | Expression . EXPOP_LOGICAL_OR Expression
+
+    EXPOP_NOT_EQUAL      shift, and go to state 23
+    EXPOP_EQUAL          shift, and go to state 24
+    EXPOP_LESS_EQUAL     shift, and go to state 25
+    EXPOP_GREATER_EQUAL  shift, and go to state 26
+    EXPOP_LESS           shift, and go to state 27
+    EXPOP_GREATER        shift, and go to state 28
+    EXPOP_SHIFT_LEFT     shift, and go to state 29
+    EXPOP_SHIFT_RIGHT    shift, and go to state 30
+    EXPOP_SUBTRACT       shift, and go to state 31
+    EXPOP_ADD            shift, and go to state 32
+    EXPOP_MODULO         shift, and go to state 33
+    EXPOP_DIVIDE         shift, and go to state 34
+    EXPOP_MULTIPLY       shift, and go to state 35
+
+    $default  reduce using rule 18 (Expression)
+
+
+state 43
+
+    5 Expression: Expression . EXPOP_MULTIPLY Expression
+    6           | Expression . EXPOP_DIVIDE Expression
+    7           | Expression . EXPOP_MODULO Expression
+    8           | Expression . EXPOP_ADD Expression
+    9           | Expression . EXPOP_SUBTRACT Expression
+   10           | Expression . EXPOP_SHIFT_RIGHT Expression
+   11           | Expression . EXPOP_SHIFT_LEFT Expression
+   12           | Expression . EXPOP_GREATER Expression
+   13           | Expression . EXPOP_LESS Expression
+   14           | Expression . EXPOP_GREATER_EQUAL Expression
+   15           | Expression . EXPOP_LESS_EQUAL Expression
+   16           | Expression . EXPOP_EQUAL Expression
+   17           | Expression . EXPOP_NOT_EQUAL Expression
+   17           | Expression EXPOP_NOT_EQUAL Expression .
+   18           | Expression . EXPOP_AND Expression
+   19           | Expression . EXPOP_XOR Expression
+   20           | Expression . EXPOP_OR Expression
+   21           | Expression . EXPOP_LOGICAL_AND Expression
+   22           | Expression . EXPOP_LOGICAL_OR Expression
+
+    EXPOP_LESS_EQUAL     shift, and go to state 25
+    EXPOP_GREATER_EQUAL  shift, and go to state 26
+    EXPOP_LESS           shift, and go to state 27
+    EXPOP_GREATER        shift, and go to state 28
+    EXPOP_SHIFT_LEFT     shift, and go to state 29
+    EXPOP_SHIFT_RIGHT    shift, and go to state 30
+    EXPOP_SUBTRACT       shift, and go to state 31
+    EXPOP_ADD            shift, and go to state 32
+    EXPOP_MODULO         shift, and go to state 33
+    EXPOP_DIVIDE         shift, and go to state 34
+    EXPOP_MULTIPLY       shift, and go to state 35
+
+    $default  reduce using rule 17 (Expression)
+
+
+state 44
+
+    5 Expression: Expression . EXPOP_MULTIPLY Expression
+    6           | Expression . EXPOP_DIVIDE Expression
+    7           | Expression . EXPOP_MODULO Expression
+    8           | Expression . EXPOP_ADD Expression
+    9           | Expression . EXPOP_SUBTRACT Expression
+   10           | Expression . EXPOP_SHIFT_RIGHT Expression
+   11           | Expression . EXPOP_SHIFT_LEFT Expression
+   12           | Expression . EXPOP_GREATER Expression
+   13           | Expression . EXPOP_LESS Expression
+   14           | Expression . EXPOP_GREATER_EQUAL Expression
+   15           | Expression . EXPOP_LESS_EQUAL Expression
+   16           | Expression . EXPOP_EQUAL Expression
+   16           | Expression EXPOP_EQUAL Expression .
+   17           | Expression . EXPOP_NOT_EQUAL Expression
+   18           | Expression . EXPOP_AND Expression
+   19           | Expression . EXPOP_XOR Expression
+   20           | Expression . EXPOP_OR Expression
+   21           | Expression . EXPOP_LOGICAL_AND Expression
+   22           | Expression . EXPOP_LOGICAL_OR Expression
+
+    EXPOP_LESS_EQUAL     shift, and go to state 25
+    EXPOP_GREATER_EQUAL  shift, and go to state 26
+    EXPOP_LESS           shift, and go to state 27
+    EXPOP_GREATER        shift, and go to state 28
+    EXPOP_SHIFT_LEFT     shift, and go to state 29
+    EXPOP_SHIFT_RIGHT    shift, and go to state 30
+    EXPOP_SUBTRACT       shift, and go to state 31
+    EXPOP_ADD            shift, and go to state 32
+    EXPOP_MODULO         shift, and go to state 33
+    EXPOP_DIVIDE         shift, and go to state 34
+    EXPOP_MULTIPLY       shift, and go to state 35
+
+    $default  reduce using rule 16 (Expression)
+
+
+state 45
+
+    5 Expression: Expression . EXPOP_MULTIPLY Expression
+    6           | Expression . EXPOP_DIVIDE Expression
+    7           | Expression . EXPOP_MODULO Expression
+    8           | Expression . EXPOP_ADD Expression
+    9           | Expression . EXPOP_SUBTRACT Expression
+   10           | Expression . EXPOP_SHIFT_RIGHT Expression
+   11           | Expression . EXPOP_SHIFT_LEFT Expression
+   12           | Expression . EXPOP_GREATER Expression
+   13           | Expression . EXPOP_LESS Expression
+   14           | Expression . EXPOP_GREATER_EQUAL Expression
+   15           | Expression . EXPOP_LESS_EQUAL Expression
+   15           | Expression EXPOP_LESS_EQUAL Expression .
+   16           | Expression . EXPOP_EQUAL Expression
+   17           | Expression . EXPOP_NOT_EQUAL Expression
+   18           | Expression . EXPOP_AND Expression
+   19           | Expression . EXPOP_XOR Expression
+   20           | Expression . EXPOP_OR Expression
+   21           | Expression . EXPOP_LOGICAL_AND Expression
+   22           | Expression . EXPOP_LOGICAL_OR Expression
+
+    EXPOP_SHIFT_LEFT   shift, and go to state 29
+    EXPOP_SHIFT_RIGHT  shift, and go to state 30
+    EXPOP_SUBTRACT     shift, and go to state 31
+    EXPOP_ADD          shift, and go to state 32
+    EXPOP_MODULO       shift, and go to state 33
+    EXPOP_DIVIDE       shift, and go to state 34
+    EXPOP_MULTIPLY     shift, and go to state 35
+
+    $default  reduce using rule 15 (Expression)
+
+
+state 46
+
+    5 Expression: Expression . EXPOP_MULTIPLY Expression
+    6           | Expression . EXPOP_DIVIDE Expression
+    7           | Expression . EXPOP_MODULO Expression
+    8           | Expression . EXPOP_ADD Expression
+    9           | Expression . EXPOP_SUBTRACT Expression
+   10           | Expression . EXPOP_SHIFT_RIGHT Expression
+   11           | Expression . EXPOP_SHIFT_LEFT Expression
+   12           | Expression . EXPOP_GREATER Expression
+   13           | Expression . EXPOP_LESS Expression
+   14           | Expression . EXPOP_GREATER_EQUAL Expression
+   14           | Expression EXPOP_GREATER_EQUAL Expression .
+   15           | Expression . EXPOP_LESS_EQUAL Expression
+   16           | Expression . EXPOP_EQUAL Expression
+   17           | Expression . EXPOP_NOT_EQUAL Expression
+   18           | Expression . EXPOP_AND Expression
+   19           | Expression . EXPOP_XOR Expression
+   20           | Expression . EXPOP_OR Expression
+   21           | Expression . EXPOP_LOGICAL_AND Expression
+   22           | Expression . EXPOP_LOGICAL_OR Expression
+
+    EXPOP_SHIFT_LEFT   shift, and go to state 29
+    EXPOP_SHIFT_RIGHT  shift, and go to state 30
+    EXPOP_SUBTRACT     shift, and go to state 31
+    EXPOP_ADD          shift, and go to state 32
+    EXPOP_MODULO       shift, and go to state 33
+    EXPOP_DIVIDE       shift, and go to state 34
+    EXPOP_MULTIPLY     shift, and go to state 35
+
+    $default  reduce using rule 14 (Expression)
+
+
+state 47
+
+    5 Expression: Expression . EXPOP_MULTIPLY Expression
+    6           | Expression . EXPOP_DIVIDE Expression
+    7           | Expression . EXPOP_MODULO Expression
+    8           | Expression . EXPOP_ADD Expression
+    9           | Expression . EXPOP_SUBTRACT Expression
+   10           | Expression . EXPOP_SHIFT_RIGHT Expression
+   11           | Expression . EXPOP_SHIFT_LEFT Expression
+   12           | Expression . EXPOP_GREATER Expression
+   13           | Expression . EXPOP_LESS Expression
+   13           | Expression EXPOP_LESS Expression .
+   14           | Expression . EXPOP_GREATER_EQUAL Expression
+   15           | Expression . EXPOP_LESS_EQUAL Expression
+   16           | Expression . EXPOP_EQUAL Expression
+   17           | Expression . EXPOP_NOT_EQUAL Expression
+   18           | Expression . EXPOP_AND Expression
+   19           | Expression . EXPOP_XOR Expression
+   20           | Expression . EXPOP_OR Expression
+   21           | Expression . EXPOP_LOGICAL_AND Expression
+   22           | Expression . EXPOP_LOGICAL_OR Expression
+
+    EXPOP_SHIFT_LEFT   shift, and go to state 29
+    EXPOP_SHIFT_RIGHT  shift, and go to state 30
+    EXPOP_SUBTRACT     shift, and go to state 31
+    EXPOP_ADD          shift, and go to state 32
+    EXPOP_MODULO       shift, and go to state 33
+    EXPOP_DIVIDE       shift, and go to state 34
+    EXPOP_MULTIPLY     shift, and go to state 35
+
+    $default  reduce using rule 13 (Expression)
+
+
+state 48
+
+    5 Expression: Expression . EXPOP_MULTIPLY Expression
+    6           | Expression . EXPOP_DIVIDE Expression
+    7           | Expression . EXPOP_MODULO Expression
+    8           | Expression . EXPOP_ADD Expression
+    9           | Expression . EXPOP_SUBTRACT Expression
+   10           | Expression . EXPOP_SHIFT_RIGHT Expression
+   11           | Expression . EXPOP_SHIFT_LEFT Expression
+   12           | Expression . EXPOP_GREATER Expression
+   12           | Expression EXPOP_GREATER Expression .
+   13           | Expression . EXPOP_LESS Expression
+   14           | Expression . EXPOP_GREATER_EQUAL Expression
+   15           | Expression . EXPOP_LESS_EQUAL Expression
+   16           | Expression . EXPOP_EQUAL Expression
+   17           | Expression . EXPOP_NOT_EQUAL Expression
+   18           | Expression . EXPOP_AND Expression
+   19           | Expression . EXPOP_XOR Expression
+   20           | Expression . EXPOP_OR Expression
+   21           | Expression . EXPOP_LOGICAL_AND Expression
+   22           | Expression . EXPOP_LOGICAL_OR Expression
+
+    EXPOP_SHIFT_LEFT   shift, and go to state 29
+    EXPOP_SHIFT_RIGHT  shift, and go to state 30
+    EXPOP_SUBTRACT     shift, and go to state 31
+    EXPOP_ADD          shift, and go to state 32
+    EXPOP_MODULO       shift, and go to state 33
+    EXPOP_DIVIDE       shift, and go to state 34
+    EXPOP_MULTIPLY     shift, and go to state 35
+
+    $default  reduce using rule 12 (Expression)
+
+
+state 49
+
+    5 Expression: Expression . EXPOP_MULTIPLY Expression
+    6           | Expression . EXPOP_DIVIDE Expression
+    7           | Expression . EXPOP_MODULO Expression
+    8           | Expression . EXPOP_ADD Expression
+    9           | Expression . EXPOP_SUBTRACT Expression
+   10           | Expression . EXPOP_SHIFT_RIGHT Expression
+   11           | Expression . EXPOP_SHIFT_LEFT Expression
+   11           | Expression EXPOP_SHIFT_LEFT Expression .
+   12           | Expression . EXPOP_GREATER Expression
+   13           | Expression . EXPOP_LESS Expression
+   14           | Expression . EXPOP_GREATER_EQUAL Expression
+   15           | Expression . EXPOP_LESS_EQUAL Expression
+   16           | Expression . EXPOP_EQUAL Expression
+   17           | Expression . EXPOP_NOT_EQUAL Expression
+   18           | Expression . EXPOP_AND Expression
+   19           | Expression . EXPOP_XOR Expression
+   20           | Expression . EXPOP_OR Expression
+   21           | Expression . EXPOP_LOGICAL_AND Expression
+   22           | Expression . EXPOP_LOGICAL_OR Expression
+
+    EXPOP_SUBTRACT  shift, and go to state 31
+    EXPOP_ADD       shift, and go to state 32
+    EXPOP_MODULO    shift, and go to state 33
+    EXPOP_DIVIDE    shift, and go to state 34
+    EXPOP_MULTIPLY  shift, and go to state 35
+
+    $default  reduce using rule 11 (Expression)
+
+
+state 50
+
+    5 Expression: Expression . EXPOP_MULTIPLY Expression
+    6           | Expression . EXPOP_DIVIDE Expression
+    7           | Expression . EXPOP_MODULO Expression
+    8           | Expression . EXPOP_ADD Expression
+    9           | Expression . EXPOP_SUBTRACT Expression
+   10           | Expression . EXPOP_SHIFT_RIGHT Expression
+   10           | Expression EXPOP_SHIFT_RIGHT Expression .
+   11           | Expression . EXPOP_SHIFT_LEFT Expression
+   12           | Expression . EXPOP_GREATER Expression
+   13           | Expression . EXPOP_LESS Expression
+   14           | Expression . EXPOP_GREATER_EQUAL Expression
+   15           | Expression . EXPOP_LESS_EQUAL Expression
+   16           | Expression . EXPOP_EQUAL Expression
+   17           | Expression . EXPOP_NOT_EQUAL Expression
+   18           | Expression . EXPOP_AND Expression
+   19           | Expression . EXPOP_XOR Expression
+   20           | Expression . EXPOP_OR Expression
+   21           | Expression . EXPOP_LOGICAL_AND Expression
+   22           | Expression . EXPOP_LOGICAL_OR Expression
+
+    EXPOP_SUBTRACT  shift, and go to state 31
+    EXPOP_ADD       shift, and go to state 32
+    EXPOP_MODULO    shift, and go to state 33
+    EXPOP_DIVIDE    shift, and go to state 34
+    EXPOP_MULTIPLY  shift, and go to state 35
+
+    $default  reduce using rule 10 (Expression)
+
+
+state 51
+
+    5 Expression: Expression . EXPOP_MULTIPLY Expression
+    6           | Expression . EXPOP_DIVIDE Expression
+    7           | Expression . EXPOP_MODULO Expression
+    8           | Expression . EXPOP_ADD Expression
+    9           | Expression . EXPOP_SUBTRACT Expression
+    9           | Expression EXPOP_SUBTRACT Expression .
+   10           | Expression . EXPOP_SHIFT_RIGHT Expression
+   11           | Expression . EXPOP_SHIFT_LEFT Expression
+   12           | Expression . EXPOP_GREATER Expression
+   13           | Expression . EXPOP_LESS Expression
+   14           | Expression . EXPOP_GREATER_EQUAL Expression
+   15           | Expression . EXPOP_LESS_EQUAL Expression
+   16           | Expression . EXPOP_EQUAL Expression
+   17           | Expression . EXPOP_NOT_EQUAL Expression
+   18           | Expression . EXPOP_AND Expression
+   19           | Expression . EXPOP_XOR Expression
+   20           | Expression . EXPOP_OR Expression
+   21           | Expression . EXPOP_LOGICAL_AND Expression
+   22           | Expression . EXPOP_LOGICAL_OR Expression
+
+    EXPOP_MODULO    shift, and go to state 33
+    EXPOP_DIVIDE    shift, and go to state 34
+    EXPOP_MULTIPLY  shift, and go to state 35
+
+    $default  reduce using rule 9 (Expression)
+
+
+state 52
+
+    5 Expression: Expression . EXPOP_MULTIPLY Expression
+    6           | Expression . EXPOP_DIVIDE Expression
+    7           | Expression . EXPOP_MODULO Expression
+    8           | Expression . EXPOP_ADD Expression
+    8           | Expression EXPOP_ADD Expression .
+    9           | Expression . EXPOP_SUBTRACT Expression
+   10           | Expression . EXPOP_SHIFT_RIGHT Expression
+   11           | Expression . EXPOP_SHIFT_LEFT Expression
+   12           | Expression . EXPOP_GREATER Expression
+   13           | Expression . EXPOP_LESS Expression
+   14           | Expression . EXPOP_GREATER_EQUAL Expression
+   15           | Expression . EXPOP_LESS_EQUAL Expression
+   16           | Expression . EXPOP_EQUAL Expression
+   17           | Expression . EXPOP_NOT_EQUAL Expression
+   18           | Expression . EXPOP_AND Expression
+   19           | Expression . EXPOP_XOR Expression
+   20           | Expression . EXPOP_OR Expression
+   21           | Expression . EXPOP_LOGICAL_AND Expression
+   22           | Expression . EXPOP_LOGICAL_OR Expression
+
+    EXPOP_MODULO    shift, and go to state 33
+    EXPOP_DIVIDE    shift, and go to state 34
+    EXPOP_MULTIPLY  shift, and go to state 35
+
+    $default  reduce using rule 8 (Expression)
+
+
+state 53
+
+    5 Expression: Expression . EXPOP_MULTIPLY Expression
+    6           | Expression . EXPOP_DIVIDE Expression
+    7           | Expression . EXPOP_MODULO Expression
+    7           | Expression EXPOP_MODULO Expression .
+    8           | Expression . EXPOP_ADD Expression
+    9           | Expression . EXPOP_SUBTRACT Expression
+   10           | Expression . EXPOP_SHIFT_RIGHT Expression
+   11           | Expression . EXPOP_SHIFT_LEFT Expression
+   12           | Expression . EXPOP_GREATER Expression
+   13           | Expression . EXPOP_LESS Expression
+   14           | Expression . EXPOP_GREATER_EQUAL Expression
+   15           | Expression . EXPOP_LESS_EQUAL Expression
+   16           | Expression . EXPOP_EQUAL Expression
+   17           | Expression . EXPOP_NOT_EQUAL Expression
+   18           | Expression . EXPOP_AND Expression
+   19           | Expression . EXPOP_XOR Expression
+   20           | Expression . EXPOP_OR Expression
+   21           | Expression . EXPOP_LOGICAL_AND Expression
+   22           | Expression . EXPOP_LOGICAL_OR Expression
+
+    $default  reduce using rule 7 (Expression)
+
+
+state 54
+
+    5 Expression: Expression . EXPOP_MULTIPLY Expression
+    6           | Expression . EXPOP_DIVIDE Expression
+    6           | Expression EXPOP_DIVIDE Expression .
+    7           | Expression . EXPOP_MODULO Expression
+    8           | Expression . EXPOP_ADD Expression
+    9           | Expression . EXPOP_SUBTRACT Expression
+   10           | Expression . EXPOP_SHIFT_RIGHT Expression
+   11           | Expression . EXPOP_SHIFT_LEFT Expression
+   12           | Expression . EXPOP_GREATER Expression
+   13           | Expression . EXPOP_LESS Expression
+   14           | Expression . EXPOP_GREATER_EQUAL Expression
+   15           | Expression . EXPOP_LESS_EQUAL Expression
+   16           | Expression . EXPOP_EQUAL Expression
+   17           | Expression . EXPOP_NOT_EQUAL Expression
+   18           | Expression . EXPOP_AND Expression
+   19           | Expression . EXPOP_XOR Expression
+   20           | Expression . EXPOP_OR Expression
+   21           | Expression . EXPOP_LOGICAL_AND Expression
+   22           | Expression . EXPOP_LOGICAL_OR Expression
+
+    $default  reduce using rule 6 (Expression)
+
+
+state 55
+
+    5 Expression: Expression . EXPOP_MULTIPLY Expression
+    5           | Expression EXPOP_MULTIPLY Expression .
+    6           | Expression . EXPOP_DIVIDE Expression
+    7           | Expression . EXPOP_MODULO Expression
+    8           | Expression . EXPOP_ADD Expression
+    9           | Expression . EXPOP_SUBTRACT Expression
+   10           | Expression . EXPOP_SHIFT_RIGHT Expression
+   11           | Expression . EXPOP_SHIFT_LEFT Expression
+   12           | Expression . EXPOP_GREATER Expression
+   13           | Expression . EXPOP_LESS Expression
+   14           | Expression . EXPOP_GREATER_EQUAL Expression
+   15           | Expression . EXPOP_LESS_EQUAL Expression
+   16           | Expression . EXPOP_EQUAL Expression
+   17           | Expression . EXPOP_NOT_EQUAL Expression
+   18           | Expression . EXPOP_AND Expression
+   19           | Expression . EXPOP_XOR Expression
+   20           | Expression . EXPOP_OR Expression
+   21           | Expression . EXPOP_LOGICAL_AND Expression
+   22           | Expression . EXPOP_LOGICAL_OR Expression
+
+    $default  reduce using rule 5 (Expression)
+
+
+state 56
+
+   24 Expression: EXPOP_DEFINE EXPOP_PAREN_OPEN EXPOP_IDENTIFIER EXPOP_PAREN_CLOSE .
+
+    $default  reduce using rule 24 (Expression)

@@ -1,0 +1,424 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="WINDebug|Win32">
+      <Configuration>WINDebug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="WINDebug|x64">
+      <Configuration>WINDebug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{c5acd4d6-501a-48bc-8d05-97963f4f2c29}</ProjectGuid>
+    <RootNamespace>AcpiExec</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.26100.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='WINDebug|x64'" Label="Configuration">
+    <PlatformToolset>v145</PlatformToolset>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='WINDebug|Win32'" Label="Configuration">
+    <PlatformToolset>v145</PlatformToolset>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='WINDebug|x64'">
+    <TargetExt>.exe</TargetExt>
+    <GenerateManifest>false</GenerateManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='WINDebug|Win32'">
+    <TargetExt>.exe</TargetExt>
+    <GenerateManifest>false</GenerateManifest>
+    <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(Platform)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='WINDebug|x64'">
+    <ClCompile>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='WINDebug|Win32'">
+    <ClCompile>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='WINDebug|x64'">
+    <ClCompile>
+      <WarningLevel>Level4</WarningLevel>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='WINDebug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level4</WarningLevel>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='WINDebug|x64'">
+    <ClCompile>
+      <SDLCheck>false</SDLCheck>
+      <Optimization>Disabled</Optimization>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <PreprocessorDefinitions>_exit=exit;ACPI_EXEC_APP;ACPI_SINGLE_THREADED;VISUAL_ACPICA_FOR_WIN64;_CRT_SECURE_NO_WARNINGS;_NO_CRT_STDIO_INLINE;WIN32;NDEBUG;_CONSOLE;__STDC__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <ExceptionHandling>false</ExceptionHandling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <EnableEnhancedInstructionSet>
+      </EnableEnhancedInstructionSet>
+      <TreatWChar_tAsBuiltInType>false</TreatWChar_tAsBuiltInType>
+      <OmitFramePointers>true</OmitFramePointers>
+      <AdditionalIncludeDirectories>$(SolutionDir)overrides\acpica\source\include;$(SolutionDir)..\..\source\include;$(SolutionDir)..\..\source\tools\acpiexec</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>kernel32.lib; legacy_stdio_definitions.lib;Advapi32.lib</AdditionalDependencies>
+    </Link>
+    <Link>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <EnableUAC>false</EnableUAC>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>
+      </ProgramDatabaseFile>
+      <GenerateMapFile>true</GenerateMapFile>
+      <SubSystem>Console</SubSystem>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>false</DataExecutionPrevention>
+      <AdditionalOptions>/IGNORE:4078</AdditionalOptions>
+      <ManifestFile />
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+    </Link>
+    <PostBuildEvent>
+      <Command>IF DEFINED MYUSBSHARE copy /y "$(OutDir)$(TargetName)$(TargetExt)" $(MYUSBSHARE)</Command>
+    </PostBuildEvent>
+    <PostBuildEvent>
+      <Message>copy /y "$(OutDir)$(TargetName)$(TargetExt)" $(MYUSBSHARE)</Message>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='WINDebug|Win32'">
+    <ClCompile>
+      <SDLCheck>false</SDLCheck>
+      <Optimization>Disabled</Optimization>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <PreprocessorDefinitions>_exit=exit;ACPI_EXEC_APP;ACPI_SINGLE_THREADED;VISUAL_ACPICA_FOR_WIN64;_CRT_SECURE_NO_WARNINGS;_NO_CRT_STDIO_INLINE;WIN32;NDEBUG;_CONSOLE;__STDC__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <ExceptionHandling>false</ExceptionHandling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <EnableEnhancedInstructionSet>
+      </EnableEnhancedInstructionSet>
+      <TreatWChar_tAsBuiltInType>false</TreatWChar_tAsBuiltInType>
+      <OmitFramePointers>true</OmitFramePointers>
+      <AdditionalIncludeDirectories>$(SolutionDir)overrides\acpica\source\include;$(SolutionDir)..\..\source\include;$(SolutionDir)..\..\source\tools\acpiexec</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>kernel32.lib; legacy_stdio_definitions.lib;Advapi32.lib</AdditionalDependencies>
+    </Link>
+    <Link>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <EnableUAC>false</EnableUAC>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>
+      </ProgramDatabaseFile>
+      <GenerateMapFile>true</GenerateMapFile>
+      <SubSystem>Console</SubSystem>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>false</DataExecutionPrevention>
+      <AdditionalOptions>/IGNORE:4078</AdditionalOptions>
+      <ManifestFile>
+      </ManifestFile>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+    </Link>
+    <PostBuildEvent>
+      <Command>IF DEFINED MYUSBSHARE copy /y "$(OutDir)$(TargetName)$(TargetExt)" $(MYUSBSHARE)</Command>
+    </PostBuildEvent>
+    <PostBuildEvent>
+      <Message>copy /y "$(OutDir)$(TargetName)$(TargetExt)" $(MYUSBSHARE)</Message>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="$(SolutionDir)..\..\source\common\acfileio.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\common\ahids.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\common\ahuuids.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\common\cmfsize.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\common\getopt.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\COMPONENTS\DEBUGGER\dbcmds.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\debugger\dbconvert.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\COMPONENTS\DEBUGGER\dbdisply.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\COMPONENTS\DEBUGGER\dbexec.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\COMPONENTS\DEBUGGER\dbfileio.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\COMPONENTS\DEBUGGER\dbhistry.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\COMPONENTS\DEBUGGER\dbinput.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\debugger\dbmethod.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\debugger\dbnames.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\debugger\dbobject.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\COMPONENTS\DEBUGGER\dbstats.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\debugger\dbtest.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\COMPONENTS\DEBUGGER\dbutils.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\COMPONENTS\DEBUGGER\dbxface.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\COMPONENTS\Disassembler\dmbuffer.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\disassembler\dmcstyle.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\disassembler\dmdeferred.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\COMPONENTS\Disassembler\dmnames.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\COMPONENTS\Disassembler\dmopcode.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\COMPONENTS\Disassembler\dmresrc.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\COMPONENTS\Disassembler\dmresrcl.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\disassembler\dmresrcl2.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\COMPONENTS\Disassembler\dmresrcs.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\COMPONENTS\Disassembler\dmutils.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\COMPONENTS\Disassembler\dmwalk.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\dispatcher\dsargs.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\dispatcher\dscontrol.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\dispatcher\dsdebug.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\dispatcher\dsfield.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\dispatcher\dsinit.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\dispatcher\dsmethod.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\dispatcher\dsmthdat.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\dispatcher\dsobject.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\dispatcher\dsopcode.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\dispatcher\dspkginit.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\dispatcher\dsutils.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\dispatcher\dswexec.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\dispatcher\dswload.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\dispatcher\dswload2.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\dispatcher\dswscope.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\dispatcher\dswstate.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\events\evglock.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='WINDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='WINDebug|Win32'">true</ExcludedFromBuild>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='WINDebug|x64'">true</DeploymentContent>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='WINDebug|Win32'">true</DeploymentContent>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)..\..\source\COMPONENTS\EVENTS\evgpe.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\COMPONENTS\EVENTS\evgpeblk.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\events\evgpeinit.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\events\evgpeutil.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\events\evhandler.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\events\evmisc.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\events\evregion.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\events\evrgnini.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\events\evsci.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\events\evxface.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\events\evxfevnt.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\events\evxfgpe.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\events\evxfregn.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\executer\exconcat.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\executer\exconfig.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\executer\exconvrt.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\executer\excreate.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\executer\exdebug.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\executer\exdump.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\executer\exfield.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\executer\exfldio.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\executer\exmisc.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\executer\exmutex.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\executer\exnames.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\executer\exoparg1.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\executer\exoparg2.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\executer\exoparg3.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\executer\exoparg6.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\executer\exprep.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\executer\exregion.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\executer\exresnte.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\executer\exresolv.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\executer\exresop.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\executer\exserial.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\executer\exstore.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\executer\exstoren.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\executer\exstorob.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\executer\exsystem.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\executer\extrace.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\executer\exutils.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\hardware\hwacpi.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\hardware\hwesleep.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\hardware\hwgpe.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\hardware\hwpci.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\hardware\hwregs.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\hardware\hwsleep.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\hardware\hwtimer.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\hardware\hwvalid.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\hardware\hwxface.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\hardware\hwxfsleep.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\namespace\nsaccess.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\namespace\nsalloc.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\namespace\nsarguments.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\namespace\nsconvert.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\namespace\nsdump.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\COMPONENTS\NAMESPACE\nsdumpdv.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\namespace\nseval.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\namespace\nsinit.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\namespace\nsload.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\namespace\nsnames.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\namespace\nsobject.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\COMPONENTS\NAMESPACE\nsparse.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\namespace\nspredef.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\namespace\nsprepkg.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\namespace\nsrepair.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\namespace\nsrepair2.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\namespace\nssearch.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\namespace\nsutils.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\namespace\nswalk.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\COMPONENTS\NAMESPACE\nsxfeval.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\namespace\nsxfname.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\namespace\nsxfobj.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\parser\psargs.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\parser\psloop.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\parser\psobject.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\parser\psopcode.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\parser\psopinfo.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\parser\psparse.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\parser\psscope.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\parser\pstree.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\parser\psutils.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\parser\pswalk.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\parser\psxface.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\resources\rsaddr.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\resources\rscalc.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\resources\rscreate.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\resources\rsdump.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\resources\rsdumpinfo.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\resources\rsinfo.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\resources\rsio.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\resources\rsirq.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\resources\rslist.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\resources\rsmemory.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\resources\rsmisc.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\resources\rsserial.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\resources\rsutils.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\resources\rsxface.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\tables\tbdata.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\tables\tbfadt.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\tables\tbfind.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\tables\tbinstal.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\tables\tbprint.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\tables\tbutils.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\tables\tbxface.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\tables\tbxfload.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\tables\tbxfroot.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\utilities\utaddress.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\utilities\utalloc.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\utilities\utascii.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\utilities\utbuffer.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\utilities\utcache.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\utilities\utcopy.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\utilities\utdebug.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\utilities\utdecode.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\utilities\utdelete.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\utilities\uterror.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\utilities\uteval.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\utilities\utexcep.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\utilities\utglobal.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\utilities\uthex.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\utilities\utids.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\utilities\utinit.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\utilities\utlock.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\utilities\utmath.c">
+      <DisableLanguageExtensions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</DisableLanguageExtensions>
+      <DisableLanguageExtensions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</DisableLanguageExtensions>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)..\..\source\components\utilities\utmisc.c">
+      <DisableLanguageExtensions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</DisableLanguageExtensions>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)..\..\source\components\utilities\utmutex.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\utilities\utnonansi.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\utilities\utobject.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\utilities\utosi.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\utilities\utownerid.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\utilities\utpredef.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\utilities\utresdecode.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\utilities\utresrc.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\utilities\utstate.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\utilities\utstring.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\utilities\utstrsuppt.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\utilities\utstrtoul64.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\utilities\uttrack.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\utilities\utuuid.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\utilities\utxface.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\utilities\utxferror.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\utilities\utxfinit.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\components\utilities\utxfmutex.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\os_specific\service_layers\osgendbg.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\os_specific\service_layers\oswindir.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\os_specific\service_layers\oswinxf.c">
+      <DisableLanguageExtensions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</DisableLanguageExtensions>
+      <DisableLanguageExtensions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</DisableLanguageExtensions>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)..\..\source\tools\acpiexec\aeexception.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\Tools\AcpiExec\aeexec.c">
+      <DisableLanguageExtensions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</DisableLanguageExtensions>
+      <DisableLanguageExtensions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</DisableLanguageExtensions>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)..\..\source\tools\acpiexec\aehandlers.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\tools\acpiexec\aeinitfile.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\tools\acpiexec\aeinstall.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\Tools\AcpiExec\aemain.c">
+      <DisableLanguageExtensions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</DisableLanguageExtensions>
+      <DisableLanguageExtensions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</DisableLanguageExtensions>
+      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)..\..\source\tools\acpiexec\aeregion.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\tools\acpiexec\aetables.c" />
+    <ClCompile Include="$(SolutionDir)..\..\source\tools\acpiexec\aetests.c" />
+    <ClCompile Include="..\..\..\source\components\events\evevent.c" />
+    <ClCompile Include="..\..\..\source\components\utilities\utcksum.c" />
+    <ClCompile Include="..\overrides\acpica\source\components\events\evglock.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="$(SolutionDir)..\..\source\include\acapps.h" />
+    <ClInclude Include="$(SolutionDir)..\..\source\include\accommon.h" />
+    <ClInclude Include="$(SolutionDir)..\..\source\Include\acconfig.h" />
+    <ClInclude Include="$(SolutionDir)..\..\source\Include\acdebug.h" />
+    <ClInclude Include="$(SolutionDir)..\..\source\INCLUDE\acdisasm.h" />
+    <ClInclude Include="$(SolutionDir)..\..\source\Include\acdispat.h" />
+    <ClInclude Include="$(SolutionDir)..\..\source\Include\acevents.h" />
+    <ClInclude Include="$(SolutionDir)..\..\source\Include\acexcep.h" />
+    <ClInclude Include="$(SolutionDir)..\..\source\Include\acglobal.h" />
+    <ClInclude Include="$(SolutionDir)..\..\source\Include\achware.h" />
+    <ClInclude Include="$(SolutionDir)..\..\source\Include\acinterp.h" />
+    <ClInclude Include="$(SolutionDir)..\..\source\Include\aclocal.h" />
+    <ClInclude Include="$(SolutionDir)..\..\source\Include\acmacros.h" />
+    <ClInclude Include="$(SolutionDir)..\..\source\include\acnames.h" />
+    <ClInclude Include="$(SolutionDir)..\..\source\Include\acnamesp.h" />
+    <ClInclude Include="$(SolutionDir)..\..\source\Include\acobject.h" />
+    <ClInclude Include="$(SolutionDir)..\..\source\include\acopcode.h" />
+    <ClInclude Include="$(SolutionDir)..\..\source\Include\acoutput.h" />
+    <ClInclude Include="$(SolutionDir)..\..\source\Include\acparser.h" />
+    <ClInclude Include="$(SolutionDir)..\..\source\Include\acpi.h" />
+    <ClInclude Include="$(SolutionDir)..\..\source\Include\acpiosxf.h" />
+    <ClInclude Include="$(SolutionDir)..\..\source\Include\acpixf.h" />
+    <ClInclude Include="$(SolutionDir)..\..\source\include\acpredef.h" />
+    <ClInclude Include="$(SolutionDir)..\..\source\Include\acresrc.h" />
+    <ClInclude Include="$(SolutionDir)..\..\source\include\acstruct.h" />
+    <ClInclude Include="$(SolutionDir)..\..\source\Include\actables.h" />
+    <ClInclude Include="$(SolutionDir)..\..\source\Include\actbl.h" />
+    <ClInclude Include="$(SolutionDir)..\..\source\Include\actbl1.h" />
+    <ClInclude Include="$(SolutionDir)..\..\source\Include\actbl2.h" />
+    <ClInclude Include="$(SolutionDir)..\..\source\Include\actypes.h" />
+    <ClInclude Include="$(SolutionDir)..\..\source\Include\acutils.h" />
+    <ClInclude Include="$(SolutionDir)..\..\source\Include\amlcode.h" />
+    <ClInclude Include="$(SolutionDir)..\..\source\INCLUDE\amlresrc.h" />
+    <ClInclude Include="$(SolutionDir)..\..\source\Include\platform\acenv.h" />
+    <ClInclude Include="$(SolutionDir)..\..\source\Include\platform\acmsvc.h" />
+    <ClInclude Include="$(SolutionDir)..\..\source\Include\platform\acwin.h" />
+    <ClInclude Include="$(SolutionDir)..\..\source\Tools\AcpiExec\aecommon.h" />
+    <ClInclude Include="$(SolutionDir)..\..\source\tools\acpiexec\aetables.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
